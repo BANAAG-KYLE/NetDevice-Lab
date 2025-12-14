@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - NetDevice Lab</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">🌐 NetDevice Lab</a>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="register.html">Register</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="form-container">
+            <h1 class="form-title">Welcome Back!</h1>
+            <p class="form-subtitle">Login to continue your networking journey</p>
+
+            <!-- Alert Messages (Hidden by default) -->
+            <div id="successMessage" class="alert alert-success hidden" style="display: none;">
+                ✅ Login successful! Redirecting...
+            </div>
+            <div id="errorMessage" class="alert alert-danger hidden" style="display: none;">
+                <!-- Error message will appear here -->
+            </div>
+
+            <!-- Login Form -->
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                
+                <!-- Username or Email -->
+                <div class="form-group">
+                    <label for="username">Username or Email</label>
+                    <input 
+                        type="text" 
+                        id="username" 
+                        name="username" 
+                        placeholder="Enter your username or email"
+                        required
+                    >
+                    <span class="error" id="usernameError"></span>
+                </div>
+
+                <!-- Password -->
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        placeholder="Enter your password"
+                        required
+                    >
+                    <span class="error" id="passwordError"></span>
+                </div>
+
+                <!-- Remember Me -->
+                <div class="form-group checkbox">
+                    <input 
+                        type="checkbox" 
+                        id="rememberMe" 
+                        name="rememberMe"
+                    >
+                    <label for="rememberMe">Remember me</label>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-primary">Login</button>
+
+                <!-- Links -->
+                <div class="form-link">
+                    Don't have an account? <a href="register.html">Register here</a>
+                </div>
+                <div class="form-link">
+                    <a href="#" style="font-size: 12px;">Forgot password?</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        /**
+         * Handle Login Form Submission
+         * Validates input and sends to PHP backend
+         */
+        function handleLogin(event) {
+            event.preventDefault();
+
+            // Clear previous messages
+            clearErrors();
+            document.getElementById('errorMessage').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'none';
+
+            // Get form values
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            const rememberMe = document.getElementById('rememberMe').checked;
+
+            // Client-side validation
+            let isValid = true;
+
+            // Validate username/email
+            if (username.length < 3) {
+                showError('usernameError', 'Please enter your username or email');
+                isValid = false;
+            }
+
+            // Validate password
+            if (password.length < 6) {
+                showError('passwordError', 'Please enter your password');
+                isValid = false;
+            }
+
+            if (!isValid) {
+                return;
+            }
+
+            // Send to PHP backend
+            loginUser(username, password, rememberMe);
+        }
+
+        /**
+         * Send login data to PHP backend
+         */
+        function loginUser(username, password, rememberMe) {
+            const formData = new FormData();
+            formData.append('username', username);
+            formData.append('password', password);
+            formData.append('rememberMe', rememberMe ? '1' : '0');
+
+            fetch('php/login.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Show success message
+                    document.getElementById('successMessage').style.display = 'block';
+                    
+                    // Redirect to dashboard after 1.5 seconds
+                    setTimeout(() => {
+                        window.location.href = 'pages/dashboard.html';
+                    }, 1500);
+                } else {
+                    // Show error message
+                    showErrorMessage(data.message || 'Login failed. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showErrorMessage('An error occurred. Please try again.');
+            });
+        }
+
+        /**
+         * Utility: Show field error
+         */
+        function showError(elementId, message) {
+            const errorElement = document.getElementById(elementId);
+            if (errorElement) {
+                errorElement.textContent = message;
+                errorElement.style.display = 'block';
+            }
+        }
+
+        /**
+         * Utility: Clear all field errors
+         */
+        function clearErrors() {
+            const errorElements = document.querySelectorAll('.error');
+            errorElements.forEach(el => {
+                el.textContent = '';
+                el.style.display = 'none';
+            });
+        }
+
+        /**
+         * Utility: Show general error message
+         */
+        function showErrorMessage(message) {
+            const errorDiv = document.getElementById('errorMessage');
+            errorDiv.textContent = '❌ ' + message;
+            errorDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Device Encyclopedia - NetDevice Lab</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .devices-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Search Bar */
+        .search-section {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 10px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .search-btn {
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .search-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Category Filter */
+        .filter-section {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .filter-label {
+            font-weight: bold;
+            color: #333;
+            margin-right: 15px;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            margin: 5px;
+            background: #f8f9fa;
+            border: 2px solid #ddd;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover {
+            border-color: #667eea;
+            color: #667eea;
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-color: #667eea;
+        }
+
+        /* Device Grid */
+        .devices-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        /* Device Card */
+        .device-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .device-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .device-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+
+        .device-name {
+            font-size: 22px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .device-category {
+            display: inline-block;
+            padding: 5px 15px;
+            background: #e7f3ff;
+            color: #0066cc;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .device-short-desc {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .device-layer {
+            font-size: 13px;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        /* Device Modal */
+        .device-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .device-modal.active {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 15px;
+            max-width: 800px;
+            width: 100%;
+            margin: 50px auto;
+            padding: 40px;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #dc3545;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            background: #c82333;
+            transform: rotate(90deg);
+        }
+
+        .modal-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .modal-icon {
+            font-size: 80px;
+            margin-bottom: 15px;
+        }
+
+        .modal-title {
+            font-size: 32px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .modal-section {
+            margin: 25px 0;
+        }
+
+        .modal-section-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .modal-text {
+            color: #555;
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        .specs-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .specs-list li {
+            padding: 10px;
+            background: #f8f9fa;
+            margin: 8px 0;
+            border-radius: 6px;
+            border-left: 4px solid #667eea;
+        }
+
+        .specs-list li strong {
+            color: #333;
+        }
+
+        .use-cases {
+            background: #e7f3ff;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #0066cc;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+
+        .no-results-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .devices-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                padding: 20px;
+                margin: 20px;
+            }
+
+            .search-box {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="../index.html" class="logo">🌐 NetDevice Lab</a>
+            <nav>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="learning.html">Learning</a>
+                <a href="quiz.html">Quiz</a>
+                <span id="userDisplay" style="color: #667eea; font-weight: bold;"></span>
+                <button class="logout-btn" onclick="logout()">Logout</button>
+            </nav>
+        </div>
+    </header>
+
+    <div class="devices-container">
+        <div class="dashboard-header">
+            <h1 class="dashboard-title">🖥️ Network Device Encyclopedia</h1>
+            <p class="dashboard-subtitle">Explore network devices and learn their functions</p>
+        </div>
+
+        <!-- Search Section -->
+        <div class="search-section">
+            <div class="search-box">
+                <input type="text" class="search-input" id="searchInput" placeholder="Search devices (e.g., router, switch, firewall)..." onkeyup="searchDevices()">
+                <button class="search-btn" onclick="searchDevices()">🔍 Search</button>
+            </div>
+        </div>
+
+        <!-- Filter Section -->
+        <div class="filter-section">
+            <span class="filter-label">Filter by OSI Layer:</span>
+            <button class="filter-btn active" onclick="filterDevices('all')">All Devices</button>
+            <button class="filter-btn" onclick="filterDevices('Layer 1')">Layer 1</button>
+            <button class="filter-btn" onclick="filterDevices('Layer 2')">Layer 2</button>
+            <button class="filter-btn" onclick="filterDevices('Layer 3')">Layer 3</button>
+            <button class="filter-btn" onclick="filterDevices('Layer 7')">Layer 7</button>
+        </div>
+
+        <!-- Devices Grid -->
+        <div class="devices-grid" id="devicesGrid">
+            <!-- Devices will be loaded here by JavaScript -->
+        </div>
+
+        <!-- No Results -->
+        <div class="no-results" id="noResults" style="display: none;">
+            <div class="no-results-icon">🔍</div>
+            <h3>No devices found</h3>
+            <p>Try a different search term or filter</p>
+        </div>
+    </div>
+
+    <!-- Device Modal -->
+    <div class="device-modal" id="deviceModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script src="../js/main.js"></script>
+    <script>
+        checkLogin();
+
+        // Device data
+        const devices = [
+            {
+                id: 1,
+                name: "Router",
+                icon: "🔀",
+                category: "Network Device",
+                layer: "Layer 3",
+                shortDesc: "Connects different networks and routes data packets",
+                description: "A router is a networking device that forwards data packets between computer networks. It operates at Layer 3 (Network Layer) of the OSI model and uses IP addresses to determine the best path for data transmission.",
+                function: "Routes traffic between different networks (LANs, WANs, Internet). Makes intelligent forwarding decisions based on IP addresses and routing tables.",
+                useCases: "Home internet connection, office networks, connecting multiple branch offices, internet service providers",
+                specs: {
+                    "OSI Layer": "Layer 3 (Network Layer)",
+                    "Addressing": "Uses IP addresses",
+                    "Protocols": "IP, ICMP, OSPF, BGP, RIP",
+                    "Ports": "Multiple Ethernet ports (4-48+)",
+                    "Common Use": "Interconnecting networks"
+                }
+            },
+            {
+                id: 2,
+                name: "Switch",
+                icon: "🔄",
+                category: "Network Device",
+                layer: "Layer 2",
+                shortDesc: "Connects devices within the same network using MAC addresses",
+                description: "A network switch connects devices within a single network. It operates at Layer 2 (Data Link Layer) and uses MAC addresses to forward frames only to the intended recipient, making networks more efficient than hubs.",
+                function: "Forwards data frames to specific devices based on MAC addresses. Creates a separate collision domain for each port, improving network performance.",
+                useCases: "Office networks, data centers, connecting computers and printers, creating VLANs",
+                specs: {
+                    "OSI Layer": "Layer 2 (Data Link Layer)",
+                    "Addressing": "Uses MAC addresses",
+                    "Protocols": "Ethernet, STP, VLANs",
+                    "Ports": "8, 16, 24, or 48 ports typical",
+                    "Common Use": "Local network connectivity"
+                }
+            },
+            {
+                id: 3,
+                name: "Hub",
+                icon: "⭕",
+                category: "Network Device",
+                layer: "Layer 1",
+                shortDesc: "Basic device that broadcasts data to all connected devices",
+                description: "A hub is a simple networking device that operates at Layer 1 (Physical Layer). It broadcasts all incoming data to every connected device, regardless of the intended recipient. Hubs are largely obsolete, replaced by switches.",
+                function: "Receives data on one port and broadcasts it to all other ports. Does not make intelligent forwarding decisions.",
+                useCases: "Legacy networks, very small home networks (rarely used today)",
+                specs: {
+                    "OSI Layer": "Layer 1 (Physical Layer)",
+                    "Addressing": "None (broadcasts to all)",
+                    "Intelligence": "No filtering or routing",
+                    "Ports": "4-24 ports typical",
+                    "Status": "Largely obsolete"
+                }
+            },
+            {
+                id: 4,
+                name: "Firewall",
+                icon: "🛡️",
+                category: "Security Device",
+                layer: "Layer 3",
+                shortDesc: "Security device that monitors and controls network traffic",
+                description: "A firewall is a network security device that monitors incoming and outgoing traffic and decides whether to allow or block specific traffic based on security rules. It can operate at multiple layers but primarily at Layer 3 and 4.",
+                function: "Filters network traffic based on security policies. Blocks unauthorized access while permitting legitimate communication. Can prevent malware, hacking attempts, and data breaches.",
+                useCases: "Perimeter security, protecting internal networks, securing servers, VPN endpoints",
+                specs: {
+                    "OSI Layer": "Layer 3-7 (Multi-layer)",
+                    "Types": "Packet filtering, Stateful, Application-level",
+                    "Features": "NAT, VPN, IPS, Content filtering",
+                    "Deployment": "Hardware or software-based",
+                    "Protection": "Inbound and outbound traffic"
+                }
+            },
+            {
+                id: 5,
+                name: "Access Point",
+                icon: "📡",
+                category: "Wireless Device",
+                layer: "Layer 2",
+                shortDesc: "Provides wireless network connectivity to devices",
+                description: "A wireless access point (WAP) allows wireless devices to connect to a wired network using Wi-Fi. It operates at Layer 2 and acts as a bridge between wireless clients and the wired network.",
+                function: "Broadcasts wireless signals (SSID) that devices can connect to. Translates between wireless and wired Ethernet protocols.",
+                useCases: "Office Wi-Fi, public hotspots, home wireless networks, campus Wi-Fi",
+                specs: {
+                    "OSI Layer": "Layer 2 (Data Link Layer)",
+                    "Standards": "802.11 a/b/g/n/ac/ax (WiFi 6)",
+                    "Frequency": "2.4 GHz and/or 5 GHz",
+                    "Range": "30-100 meters (indoors)",
+                    "Security": "WPA2, WPA3 encryption"
+                }
+            },
+            {
+                id: 6,
+                name: "Modem",
+                icon: "📞",
+                category: "Network Device",
+                layer: "Layer 1",
+                shortDesc: "Converts digital signals to analog and vice versa",
+                description: "A modem (modulator-demodulator) converts digital data from your computer into analog signals for transmission over telephone lines, cable, or fiber, and vice versa. Essential for internet connectivity.",
+                function: "Modulates digital signals into analog for transmission. Demodulates received analog signals back to digital. Connects your local network to your ISP.",
+                useCases: "Home internet connection, DSL service, cable internet, fiber connections",
+                specs: {
+                    "OSI Layer": "Layer 1 (Physical Layer)",
+                    "Types": "DSL, Cable, Fiber, Dial-up",
+                    "Function": "Signal conversion",
+                    "Speed": "Depends on ISP and type",
+                    "Common Use": "ISP connection"
+                }
+            },
+            {
+                id: 7,
+                name: "Network Interface Card",
+                icon: "💾",
+                category: "Hardware",
+                layer: "Layer 2",
+                shortDesc: "Hardware that connects a computer to a network",
+                description: "A Network Interface Card (NIC) is a hardware component that allows a computer to connect to a network. It operates at Layer 2 and has a unique MAC address burned into it.",
+                function: "Provides physical connection to network. Converts data into signals for transmission. Each NIC has a unique MAC address for identification.",
+                useCases: "Every networked computer, servers, laptops, desktops",
+                specs: {
+                    "OSI Layer": "Layer 1-2 (Physical/Data Link)",
+                    "Types": "Ethernet, Wireless, Fiber",
+                    "Speed": "10/100/1000 Mbps or 10 Gbps",
+                    "Interface": "PCI, PCIe, USB, Built-in",
+                    "Address": "Unique MAC address"
+                }
+            },
+            {
+                id: 8,
+                name: "Load Balancer",
+                icon: "⚖️",
+                category: "Network Device",
+                layer: "Layer 7",
+                shortDesc: "Distributes network traffic across multiple servers",
+                description: "A load balancer distributes incoming network traffic across multiple servers to ensure no single server becomes overwhelmed. It operates at Layer 4 (Transport) or Layer 7 (Application).",
+                function: "Distributes requests evenly across server pool. Monitors server health and routes traffic away from failed servers. Improves performance and availability.",
+                useCases: "Web servers, large applications, data centers, cloud infrastructure",
+                specs: {
+                    "OSI Layer": "Layer 4 or Layer 7",
+                    "Methods": "Round-robin, Least connections, IP hash",
+                    "Features": "Health checks, SSL termination",
+                    "Benefit": "High availability and scalability",
+                    "Types": "Hardware or software-based"
+                }
+            },
+            {
+                id: 9,
+                name: "Proxy Server",
+                icon: "🔄",
+                category: "Network Device",
+                layer: "Layer 7",
+                shortDesc: "Acts as an intermediary between clients and servers",
+                description: "A proxy server acts as an intermediary for requests from clients seeking resources from other servers. It operates at Layer 7 (Application Layer) and can cache content, filter requests, and provide anonymity.",
+                function: "Forwards client requests to servers. Can cache frequently accessed content. Filters unwanted content. Provides anonymity by hiding client IP addresses.",
+                useCases: "Content filtering in schools/offices, web caching, bypassing geo-restrictions, security monitoring",
+                specs: {
+                    "OSI Layer": "Layer 7 (Application Layer)",
+                    "Types": "Forward proxy, Reverse proxy, Transparent",
+                    "Features": "Caching, Filtering, Anonymity",
+                    "Protocols": "HTTP, HTTPS, SOCKS",
+                    "Common Use": "Web traffic management"
+                }
+            },
+            {
+                id: 10,
+                name: "Repeater",
+                icon: "📶",
+                category: "Network Device",
+                layer: "Layer 1",
+                shortDesc: "Amplifies and regenerates network signals",
+                description: "A repeater is a network device that operates at Layer 1 (Physical Layer) and regenerates or amplifies signals to extend the distance they can travel. It simply repeats what it receives.",
+                function: "Receives weak signals. Regenerates and amplifies them. Extends network cable distance beyond normal limits.",
+                useCases: "Extending network cable runs, boosting Wi-Fi signals, long-distance connections",
+                specs: {
+                    "OSI Layer": "Layer 1 (Physical Layer)",
+                    "Function": "Signal regeneration",
+                    "Use": "Extends cable distance",
+                    "Intelligence": "No filtering (dumb device)",
+                    "Types": "Wired repeaters, Wireless repeaters"
+                }
+            }
+        ];
+
+        // Load devices on page load
+        window.addEventListener('load', function() {
+            displayDevices(devices);
+        });
+
+        // Display devices
+        function displayDevices(devicesToShow) {
+            const grid = document.getElementById('devicesGrid');
+            const noResults = document.getElementById('noResults');
+
+            if (devicesToShow.length === 0) {
+                grid.style.display = 'none';
+                noResults.style.display = 'block';
+                return;
+            }
+
+            grid.style.display = 'grid';
+            noResults.style.display = 'none';
+
+            grid.innerHTML = devicesToShow.map(device => `
+                <div class="device-card" onclick="showDeviceDetails(${device.id})">
+                    <div class="device-icon">${device.icon}</div>
+                    <div class="device-category">${device.category}</div>
+                    <div class="device-name">${device.name}</div>
+                    <div class="device-short-desc">${device.shortDesc}</div>
+                    <div class="device-layer">${device.layer}</div>
+                </div>
+            `).join('');
+        }
+
+        // Search devices
+        function searchDevices() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = devices.filter(device => 
+                device.name.toLowerCase().includes(searchTerm) ||
+                device.shortDesc.toLowerCase().includes(searchTerm) ||
+                device.category.toLowerCase().includes(searchTerm)
+            );
+            displayDevices(filtered);
+        }
+
+        // Filter devices by layer
+        function filterDevices(layer) {
+            // Update active button
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            if (layer === 'all') {
+                displayDevices(devices);
+            } else {
+                const filtered = devices.filter(device => device.layer === layer);
+                displayDevices(filtered);
+            }
+        }
+
+        // Show device details
+        function showDeviceDetails(deviceId) {
+            const device = devices.find(d => d.id === deviceId);
+            if (!device) return;
+
+            const specsHTML = Object.entries(device.specs).map(([key, value]) => 
+                `<li><strong>${key}:</strong> ${value}</li>`
+            ).join('');
+
+            const modalHTML = `
+                <div class="modal-header">
+                    <div class="modal-icon">${device.icon}</div>
+                    <div class="modal-title">${device.name}</div>
+                    <div class="device-category">${device.category} - ${device.layer}</div>
+                </div>
+
+                <div class="modal-section">
+                    <div class="modal-section-title">📖 Description</div>
+                    <p class="modal-text">${device.description}</p>
+                </div>
+
+                <div class="modal-section">
+                    <div class="modal-section-title">⚙️ Function</div>
+                    <p class="modal-text">${device.function}</p>
+                </div>
+
+                <div class="modal-section">
+                    <div class="modal-section-title">🔧 Technical Specifications</div>
+                    <ul class="specs-list">${specsHTML}</ul>
+                </div>
+
+                <div class="modal-section">
+                    <div class="modal-section-title">💼 Common Use Cases</div>
+                    <div class="use-cases">
+                        <p class="modal-text">${device.useCases}</p>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('modalBody').innerHTML = modalHTML;
+            document.getElementById('deviceModal').classList.add('active');
+        }
+
+        // Close modal
+        function closeModal() {
+            document.getElementById('deviceModal').classList.remove('active');
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('deviceModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Logout
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                window.location.href = '../php/logout.php';
+            }
+        }
+    </script>
+</body>
+</html>

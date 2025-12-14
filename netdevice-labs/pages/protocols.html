@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protocol Animations - NetDevice Lab</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/animations.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="../index.html" class="logo">🌐 NetDevice Lab</a>
+            <nav>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="learning.html">Learning</a>
+                <a href="quiz.html">Quiz</a>
+                <span id="userDisplay" style="color: #667eea; font-weight: bold;"></span>
+                <button class="logout-btn" onclick="logout()">Logout</button>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="dashboard-header">
+            <h1 class="dashboard-title">🎬 Protocol Animations</h1>
+            <p class="dashboard-subtitle">Watch how network protocols work in action</p>
+        </div>
+
+        <!-- TCP Three-Way Handshake -->
+        <div class="animation-section">
+            <h2 class="animation-title">1. TCP Three-Way Handshake</h2>
+            <p class="animation-description">
+                The TCP three-way handshake is how two computers establish a reliable connection before sending data. 
+                It's like a polite conversation: "Can I talk?" → "Yes, can you hear me?" → "Yes, let's talk!"
+            </p>
+
+            <div class="animation-canvas" id="tcp-canvas">
+                <div class="device-box">
+                    <div class="device-icon">💻</div>
+                    <div class="device-label">CLIENT</div>
+                </div>
+                <div class="device-box">
+                    <div class="device-icon">🖥️</div>
+                    <div class="device-label">SERVER</div>
+                </div>
+                <div class="packet" id="tcp-packet1" style="top: 45%;">SYN</div>
+                <div class="packet" id="tcp-packet2" style="top: 45%;">SYN-ACK</div>
+                <div class="packet" id="tcp-packet3" style="top: 45%;">ACK</div>
+            </div>
+
+            <div class="animation-info" id="tcp-info">
+                Click Play to start the animation
+            </div>
+
+            <div class="animation-controls">
+                <button class="control-button play" onclick="playTCP()">▶ Play</button>
+                <button class="control-button reset" onclick="resetTCP()">↻ Reset</button>
+            </div>
+
+            <div class="key-concepts">
+                <h3>Key Concepts:</h3>
+                <ul>
+                    <li><strong>SYN (Synchronize):</strong> Client requests to start connection</li>
+                    <li><strong>SYN-ACK:</strong> Server acknowledges and agrees to connect</li>
+                    <li><strong>ACK (Acknowledge):</strong> Client confirms - connection established!</li>
+                    <li><strong>Purpose:</strong> Ensures both sides are ready before data transfer</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- DNS Resolution -->
+        <div class="animation-section">
+            <h2 class="animation-title">2. DNS Resolution</h2>
+            <p class="animation-description">
+                DNS (Domain Name System) translates human-readable domain names like "google.com" into IP addresses 
+                that computers can understand. It's like a phonebook for the internet!
+            </p>
+
+            <div class="animation-canvas" id="dns-canvas">
+                <div class="device-box">
+                    <div class="device-icon">💻</div>
+                    <div class="device-label">YOUR PC</div>
+                </div>
+                <div class="device-box">
+                    <div class="device-icon">🌐</div>
+                    <div class="device-label">DNS SERVER</div>
+                </div>
+                <div class="packet" id="dns-packet1" style="top: 45%; background: #007bff;">Query: google.com?</div>
+                <div class="packet" id="dns-packet2" style="top: 45%; background: #28a745;">Reply: 142.250.185.46</div>
+            </div>
+
+            <div class="animation-info" id="dns-info">
+                Click Play to start the animation
+            </div>
+
+            <div class="animation-controls">
+                <button class="control-button play" onclick="playDNS()">▶ Play</button>
+                <button class="control-button reset" onclick="resetDNS()">↻ Reset</button>
+            </div>
+
+            <div class="key-concepts">
+                <h3>Key Concepts:</h3>
+                <ul>
+                    <li><strong>DNS Query:</strong> Computer asks "What's the IP for google.com?"</li>
+                    <li><strong>DNS Response:</strong> Server replies with IP address</li>
+                    <li><strong>Purpose:</strong> Makes internet user-friendly (we remember names, not numbers)</li>
+                    <li><strong>Speed:</strong> Cached for faster future lookups</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- DHCP -->
+        <div class="animation-section">
+            <h2 class="animation-title">3. DHCP IP Assignment (DORA Process)</h2>
+            <p class="animation-description">
+                DHCP automatically assigns IP addresses to devices on a network. When you connect to WiFi, 
+                DHCP gives your device an IP address so it can communicate.
+            </p>
+
+            <div class="animation-canvas" id="dhcp-canvas">
+                <div class="device-box">
+                    <div class="device-icon">📱</div>
+                    <div class="device-label">NEW DEVICE</div>
+                </div>
+                <div class="device-box">
+                    <div class="device-icon">🔀</div>
+                    <div class="device-label">DHCP SERVER</div>
+                </div>
+                <div class="packet" id="dhcp-packet1" style="top: 35%; background: #dc3545;">Discover</div>
+                <div class="packet" id="dhcp-packet2" style="top: 45%; background: #ffc107; color: #333;">Offer</div>
+                <div class="packet" id="dhcp-packet3" style="top: 55%; background: #17a2b8;">Request</div>
+                <div class="packet" id="dhcp-packet4" style="top: 65%; background: #28a745;">Acknowledge</div>
+            </div>
+
+            <div class="animation-info" id="dhcp-info">
+                Click Play to start the animation
+            </div>
+
+            <div class="animation-controls">
+                <button class="control-button play" onclick="playDHCP()">▶ Play</button>
+                <button class="control-button reset" onclick="resetDHCP()">↻ Reset</button>
+            </div>
+
+            <div class="key-concepts">
+                <h3>Key Concepts (DORA):</h3>
+                <ul>
+                    <li><strong>D - Discover:</strong> Device broadcasts "I need an IP address!"</li>
+                    <li><strong>O - Offer:</strong> DHCP server offers available IP address</li>
+                    <li><strong>R - Request:</strong> Device accepts the offered IP</li>
+                    <li><strong>A - Acknowledge:</strong> Server confirms - IP assigned!</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Ping/ICMP -->
+        <div class="animation-section">
+            <h2 class="animation-title">4. Ping / ICMP Echo Request</h2>
+            <p class="animation-description">
+                Ping tests if a device is reachable on the network. It sends an "Echo Request" and waits for 
+                an "Echo Reply" - like calling someone to see if they answer.
+            </p>
+
+            <div class="animation-canvas" id="ping-canvas">
+                <div class="device-box">
+                    <div class="device-icon">💻</div>
+                    <div class="device-label">YOUR PC</div>
+                </div>
+                <div class="device-box">
+                    <div class="device-icon">🌐</div>
+                    <div class="device-label">TARGET</div>
+                </div>
+                <div class="packet" id="ping-packet1" style="top: 45%; background: #007bff;">Echo Request</div>
+                <div class="packet" id="ping-packet2" style="top: 45%; background: #28a745;">Echo Reply</div>
+            </div>
+
+            <div class="animation-info" id="ping-info">
+                Click Play to start the animation
+            </div>
+
+            <div class="animation-controls">
+                <button class="control-button play" onclick="playPing()">▶ Play</button>
+                <button class="control-button reset" onclick="resetPing()">↻ Reset</button>
+            </div>
+
+            <div class="key-concepts">
+                <h3>Key Concepts:</h3>
+                <ul>
+                    <li><strong>Echo Request:</strong> "Are you there?"</li>
+                    <li><strong>Echo Reply:</strong> "Yes, I'm here!"</li>
+                    <li><strong>Purpose:</strong> Test connectivity and measure response time</li>
+                    <li><strong>Use Case:</strong> Troubleshooting network problems</li>
+                </ul>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin: 40px 0;">
+            <a href="learning.html" class="btn btn-secondary">← Back to Learning</a>
+            <a href="tutorials.html" class="btn btn-primary" style="margin-left: 10px;">Next: OSI Tutorials →</a>
+        </div>
+    </div>
+
+    <script src="../js/main.js"></script>
+    <script>
+        // Check login
+        checkLogin();
+
+        // TCP Animation
+        function playTCP() {
+            const info = document.getElementById('tcp-info');
+            const p1 = document.getElementById('tcp-packet1');
+            const p2 = document.getElementById('tcp-packet2');
+            const p3 = document.getElementById('tcp-packet3');
+
+            resetTCP();
+
+            setTimeout(() => {
+                info.innerHTML = '<strong>Step 1:</strong> Client sends SYN (Synchronize) to server';
+                p1.classList.add('animate-right');
+            }, 500);
+
+            setTimeout(() => {
+                info.innerHTML = '<strong>Step 2:</strong> Server responds with SYN-ACK (Synchronize-Acknowledge)';
+                p2.classList.add('animate-left');
+            }, 2700);
+
+            setTimeout(() => {
+                info.innerHTML = '<strong>Step 3:</strong> Client sends ACK (Acknowledge) - Connection established!';
+                p3.classList.add('animate-right');
+            }, 4900);
+
+            setTimeout(() => {
+                info.innerHTML = '<strong>✅ Complete!</strong> TCP connection is now established and ready for data transfer.';
+            }, 7000);
+        }
+
+        function resetTCP() {
+            const p1 = document.getElementById('tcp-packet1');
+            const p2 = document.getElementById('tcp-packet2');
+            const p3 = document.getElementById('tcp-packet3');
+            p1.classList.remove('animate-right', 'animate-left');
+            p2.classList.remove('animate-right', 'animate-left');
+            p3.classList.remove('animate-right', 'animate-left');
+            document.getElementById('tcp-info').textContent = 'Click Play to start the animation';
+        }
+
+        // DNS Animation
+        function playDNS() {
+            const info = document.getElementById('dns-info');
+            const p1 = document.getElementById('dns-packet1');
+            const p2 = document.getElementById('dns-packet2');
+
+            resetDNS();
+
+            setTimeout(() => {
+                info.innerHTML = '<strong>Step 1:</strong> Your PC asks DNS server "What is the IP for google.com?"';
+                p1.classList.add('animate-right');
+            }, 500);
+
+            setTimeout(() => {
+                info.innerHTML = '<strong>Step 2:</strong> DNS server replies with IP address: 142.250.185.46';
+                p2.classList.add('animate-left');
+            }, 2700);
+
+            setTimeout(() => {
+                info.innerHTML = '<strong>✅ Complete!</strong> Your PC now knows the IP address and can connect to Google!';
+            }, 4900);
+        }
+
+        function resetDNS() {
+            const p1 = document.getElementById('dns-packet1');
+            const p2 = document.getElementById('dns-packet2');
+            p1.classList.remove('animate-right', 'animate-left');
+            p2.classList.remove('animate-right', 'animate-left');
+            document.getElementById('dns-info').textContent = 'Click Play to start the animation';
+        }
+
+        // DHCP Animation
+        function playDHCP() {
+            const info = document.getElementById('dhcp-info');
+            const p1 = document.getElementById('dhcp-packet1');
+            const p2 = document.getElementById('dhcp-packet2');
+            const p3 = document.getElementById('dhcp-packet3');
+            const p4 = document.getElementById('dhcp-packet4');
+
+            resetDHCP();
+
+            setTimeout(() => {
+                info.innerHTML = '<strong>D - Discover:</strong> New device broadcasts "I need an IP address!"';
+                p1.classList.add('animate-right');
+            }, 500);
+
+            setTimeout(() => {
+                info.innerHTML = '<strong>O - Offer:</strong> DHCP server offers IP: 192.168.1.100';
+                p2.classList.add('animate-left');
+            }, 2200);
+
+            setTimeout(() => {
+                info.innerHTML = '<strong>R - Request:</strong> Device accepts the offered IP address';
+                p3.classList.add('animate-right');
+            }, 3900);
+
+            setTimeout(() => {
+                info.innerHTML = '<strong>A - Acknowledge:</strong> Server confirms assignment';
+                p4.classList.add('animate-left');
+            }, 5600);
+
+            setTimeout(() => {
+                info.innerHTML = '<strong>✅ Complete!</strong> Device now has IP 192.168.1.100 and can communicate!';
+            }, 7300);
+        }
+
+        function resetDHCP() {
+            ['dhcp-packet1', 'dhcp-packet2', 'dhcp-packet3', 'dhcp-packet4'].forEach(id => {
+                const p = document.getElementById(id);
+                p.classList.remove('animate-right', 'animate-left');
+            });
+            document.getElementById('dhcp-info').textContent = 'Click Play to start the animation';
+        }
+
+        // Ping Animation
+        function playPing() {
+            const info = document.getElementById('ping-info');
+            const p1 = document.getElementById('ping-packet1');
+            const p2 = document.getElementById('ping-packet2');
+
+            resetPing();
+
+            setTimeout(() => {
+                info.innerHTML = '<strong>Step 1:</strong> Sending Echo Request to target...';
+                p1.classList.add('animate-right');
+            }, 500);
+
+            setTimeout(() => {
+                info.innerHTML = '<strong>Step 2:</strong> Target responds with Echo Reply';
+                p2.classList.add('animate-left');
+            }, 2700);
+
+            setTimeout(() => {
+                info.innerHTML = '<strong>✅ Complete!</strong> Target is reachable! Round-trip time: 15ms';
+            }, 4900);
+        }
+
+        function resetPing() {
+            const p1 = document.getElementById('ping-packet1');
+            const p2 = document.getElementById('ping-packet2');
+            p1.classList.remove('animate-right', 'animate-left');
+            p2.classList.remove('animate-right', 'animate-left');
+            document.getElementById('ping-info').textContent = 'Click Play to start the animation';
+        }
+
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                window.location.href = '../php/logout.php';
+            }
+        }
+    </script>
+</body>
+</html>

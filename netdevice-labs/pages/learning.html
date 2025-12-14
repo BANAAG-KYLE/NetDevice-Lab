@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Module - NetDevice Lab</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header>
+        <div class="header-content">
+            <a href="../index.html" class="logo">🌐 NetDevice Lab</a>
+            <nav>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="learning.html" style="color: #667eea;">Learning</a>
+                <a href="quiz.html">Quiz</a>
+                <span id="userDisplay" style="color: #667eea; font-weight: bold;">Loading...</span>
+                <button class="logout-btn" onclick="logout()">Logout</button>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Page Title -->
+        <div class="dashboard-header">
+            <h1 class="dashboard-title">📚 Learning Module</h1>
+            <p class="dashboard-subtitle">Choose what you want to learn today</p>
+        </div>
+
+        <!-- Learning Options Grid -->
+        <div class="row">
+            
+            <!-- Protocol Animations -->
+            <div class="card">
+                <div style="font-size: 48px; text-align: center; margin-bottom: 15px;">🎬</div>
+                <div class="card-title">Protocol Animations</div>
+                <div class="card-text">
+                    Watch interactive animations of TCP handshake, DNS resolution, DHCP, and Ping requests.
+                </div>
+                <a href="protocols.html" class="btn btn-primary" style="margin-top: 15px; width: 100%;">
+                    View Animations
+                </a>
+            </div>
+
+            <!-- OSI Layer Tutorials -->
+            <div class="card">
+                <div style="font-size: 48px; text-align: center; margin-bottom: 15px;">📖</div>
+                <div class="card-title">OSI Layer Tutorials</div>
+                <div class="card-text">
+                    Learn about the 7 layers of the OSI model with detailed explanations and examples.
+                </div>
+                <a href="tutorials.html" class="btn btn-primary" style="margin-top: 15px; width: 100%;">
+                    Start Learning
+                </a>
+            </div>
+
+            <!-- Network Topology Designer -->
+            <div class="card">
+                <div style="font-size: 48px; text-align: center; margin-bottom: 15px;">🎨</div>
+                <div class="card-title">Topology Designer</div>
+                <div class="card-text">
+                    Build and design network topologies with our interactive drag-and-drop tool.
+                </div>
+                <a href="topology.html" class="btn btn-primary" style="margin-top: 15px; width: 100%;">
+                    Open Designer
+                </a>
+            </div>
+
+            <!-- Device Encyclopedia -->
+            <div class="card">
+                <div style="font-size: 48px; text-align: center; margin-bottom: 15px;">🖥️</div>
+                <div class="card-title">Device Encyclopedia</div>
+                <div class="card-text">
+                    Explore network devices like routers, switches, firewalls, and learn their functions.
+                </div>
+                <a href="devices.html" class="btn btn-primary" style="margin-top: 15px; width: 100%;">
+                    Browse Devices
+                </a>
+            </div>
+
+        </div>
+
+        <!-- Learning Progress -->
+        <h2 style="color: #333; margin: 40px 0 20px 0;">Your Learning Progress</h2>
+        <div class="card">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                
+                <div style="text-align: center; padding: 20px;">
+                    <div style="font-size: 40px; font-weight: bold; color: #667eea;" id="protocolsViewed">0/4</div>
+                    <div style="color: #666; margin-top: 10px;">Protocols Viewed</div>
+                </div>
+
+                <div style="text-align: center; padding: 20px;">
+                    <div style="font-size: 40px; font-weight: bold; color: #667eea;" id="tutorialsCompleted">0/7</div>
+                    <div style="color: #666; margin-top: 10px;">Tutorials Completed</div>
+                </div>
+
+                <div style="text-align: center; padding: 20px;">
+                    <div style="font-size: 40px; font-weight: bold; color: #667eea;" id="topologiesSaved">0</div>
+                    <div style="color: #666; margin-top: 10px;">Topologies Saved</div>
+                </div>
+
+                <div style="text-align: center; padding: 20px;">
+                    <div style="font-size: 40px; font-weight: bold; color: #667eea;" id="devicesViewed">0/10</div>
+                    <div style="color: #666; margin-top: 10px;">Devices Viewed</div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Quick Tips -->
+        <h2 style="color: #333; margin: 40px 0 20px 0;">💡 Learning Tips</h2>
+        <div class="row">
+            <div class="card" style="background: #e7f3ff; border-left: 4px solid #0066cc;">
+                <div class="card-title" style="color: #0066cc;">Start with Basics</div>
+                <div class="card-text">
+                    Begin with the OSI Layer tutorials to understand networking fundamentals before diving into protocols.
+                </div>
+            </div>
+
+            <div class="card" style="background: #fff3cd; border-left: 4px solid #ffc107;">
+                <div class="card-title" style="color: #856404;">Practice with Designer</div>
+                <div class="card-text">
+                    Use the topology designer to visualize what you learn. Building networks helps reinforce concepts.
+                </div>
+            </div>
+
+            <div class="card" style="background: #d4edda; border-left: 4px solid #28a745;">
+                <div class="card-title" style="color: #155724;">Take Your Time</div>
+                <div class="card-text">
+                    Learning networking takes time. Watch animations multiple times and read tutorials carefully.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Check if user is logged in
+        checkLogin();
+
+        function checkLogin() {
+            fetch('../php/check_session.php')
+                .then(response => response.json())
+                .then(data => {
+                    if (!data.loggedIn) {
+                        window.location.href = '../login.html';
+                    } else {
+                        document.getElementById('userDisplay').textContent = data.username;
+                        loadProgress(data.userId);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    window.location.href = '../login.html';
+                });
+        }
+
+        function loadProgress(userId) {
+            // Load user's learning progress
+            fetch('../php/get_learning_progress.php?user_id=' + userId)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        document.getElementById('tutorialsCompleted').textContent = 
+                            (data.tutorials_completed || 0) + '/7';
+                        document.getElementById('topologiesSaved').textContent = 
+                            data.topologies_saved || 0;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading progress:', error);
+                });
+        }
+
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                window.location.href = '../php/logout.php';
+            }
+        }
+    </script>
+</body>
+</html>

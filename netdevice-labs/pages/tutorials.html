@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSI Model Tutorials - NetDevice Lab</title>
+    <link rel="stylesheet" href="../css/style.css">
+
+
+    <style>
+        .tutorial-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .osi-model {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .layer-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-left: 6px solid;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .layer-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .layer-card.completed {
+            background: #f0f8f0;
+        }
+
+        .layer-info {
+            flex: 1;
+        }
+
+        .layer-number {
+            font-size: 14px;
+            font-weight: bold;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .layer-name {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .layer-description {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .layer-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .checkmark {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #28a745;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .layer-card.completed .checkmark {
+            opacity: 1;
+        }
+
+        /* Layer Colors */
+        .layer-7 { border-left-color: #e74c3c; }
+        .layer-6 { border-left-color: #e67e22; }
+        .layer-5 { border-left-color: #f39c12; }
+        .layer-4 { border-left-color: #2ecc71; }
+        .layer-3 { border-left-color: #3498db; }
+        .layer-2 { border-left-color: #9b59b6; }
+        .layer-1 { border-left-color: #95a5a6; }
+
+        /* Tutorial Content Modal */
+        .tutorial-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .tutorial-modal.active {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+        }
+
+        .tutorial-content {
+            background: white;
+            border-radius: 15px;
+            max-width: 900px;
+            width: 100%;
+            margin: 50px auto;
+            padding: 40px;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #dc3545;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .close-btn:hover {
+            background: #c82333;
+            transform: rotate(90deg);
+        }
+
+        .tutorial-header {
+            border-left: 6px solid;
+            padding-left: 20px;
+            margin-bottom: 30px;
+        }
+
+        .tutorial-title {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .tutorial-subtitle {
+            font-size: 16px;
+            color: #666;
+        }
+
+        .section {
+            margin: 30px 0;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .section-content {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .analogy-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .analogy-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .key-points {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .key-points ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .key-points li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            color: #333;
+            font-size: 15px;
+        }
+
+        .key-points li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .examples {
+            background: #e7f3ff;
+            border-left: 4px solid #0066cc;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+        }
+
+        .complete-btn {
+            background: #28a745;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: all 0.3s;
+        }
+
+        .complete-btn:hover {
+            background: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(40,167,69,0.4);
+        }
+
+        .complete-btn.completed {
+            background: #6c757d;
+            cursor: not-allowed;
+        }
+
+        .progress-summary {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .progress-bar-container {
+            background: #e0e0e0;
+            height: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #28a745 0%, #20c997 100%);
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .tutorial-content {
+                padding: 20px;
+                margin: 20px;
+            }
+
+            .tutorial-title {
+                font-size: 24px;
+            }
+
+            .section-title {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="../index.html" class="logo">🌐 NetDevice Lab</a>
+            <nav>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="learning.html">Learning</a>
+                <a href="quiz.html">Quiz</a>
+                <span id="userDisplay" style="color: #667eea; font-weight: bold;"></span>
+                <button class="logout-btn" onclick="logout()">Logout</button>
+            </nav>
+        </div>
+    </header>
+
+    <div class="tutorial-container">
+        <div class="dashboard-header">
+            <h1 class="dashboard-title">📖 OSI Model Tutorials</h1>
+            <p class="dashboard-subtitle">Learn the 7 layers of the OSI model step by step</p>
+        </div>
+
+        <!-- Progress Summary -->
+        <div class="progress-summary">
+            <h3 style="color: #333; margin-bottom: 10px;">Your Progress</h3>
+            <div class="progress-bar-container">
+                <div class="progress-bar-fill" id="progressBar" style="width: 0%;">0/7</div>
+            </div>
+            <p style="color: #666; font-size: 14px; margin-top: 10px;">
+                Complete all 7 layers to master the OSI model!
+            </p>
+        </div>
+
+        <!-- OSI Model Layers -->
+        <div class="osi-model">
+            <!-- Layer 7 - Application -->
+            <div class="layer-card layer-7" onclick="openTutorial(7)" data-layer="7">
+                <div class="layer-info">
+                    <div class="layer-number">LAYER 7</div>
+                    <div class="layer-name">Application Layer</div>
+                    <div class="layer-description">User interfaces and network services (HTTP, FTP, DNS)</div>
+                </div>
+                <div class="layer-status">
+                    <div class="checkmark">✓</div>
+                    <span style="font-size: 24px;">📱</span>
+                </div>
+            </div>
+
+            <!-- Layer 6 - Presentation -->
+            <div class="layer-card layer-6" onclick="openTutorial(6)" data-layer="6">
+                <div class="layer-info">
+                    <div class="layer-number">LAYER 6</div>
+                    <div class="layer-name">Presentation Layer</div>
+                    <div class="layer-description">Data formatting, encryption, compression</div>
+                </div>
+                <div class="layer-status">
+                    <div class="checkmark">✓</div>
+                    <span style="font-size: 24px;">🔐</span>
+                </div>
+            </div>
+
+            <!-- Layer 5 - Session -->
+            <div class="layer-card layer-5" onclick="openTutorial(5)" data-layer="5">
+                <div class="layer-info">
+                    <div class="layer-number">LAYER 5</div>
+                    <div class="layer-name">Session Layer</div>
+                    <div class="layer-description">Establishes, manages, and terminates connections</div>
+                </div>
+                <div class="layer-status">
+                    <div class="checkmark">✓</div>
+                    <span style="font-size: 24px;">🔗</span>
+                </div>
+            </div>
+
+            <!-- Layer 4 - Transport -->
+            <div class="layer-card layer-4" onclick="openTutorial(4)" data-layer="4">
+                <div class="layer-info">
+                    <div class="layer-number">LAYER 4</div>
+                    <div class="layer-name">Transport Layer</div>
+                    <div class="layer-description">Reliable data delivery (TCP/UDP, ports)</div>
+                </div>
+                <div class="layer-status">
+                    <div class="checkmark">✓</div>
+                    <span style="font-size: 24px;">🚚</span>
+                </div>
+            </div>
+
+            <!-- Layer 3 - Network -->
+            <div class="layer-card layer-3" onclick="openTutorial(3)" data-layer="3">
+                <div class="layer-info">
+                    <div class="layer-number">LAYER 3</div>
+                    <div class="layer-name">Network Layer</div>
+                    <div class="layer-description">Routing and logical addressing (IP addresses)</div>
+                </div>
+                <div class="layer-status">
+                    <div class="checkmark">✓</div>
+                    <span style="font-size: 24px;">🗺️</span>
+                </div>
+            </div>
+
+            <!-- Layer 2 - Data Link -->
+            <div class="layer-card layer-2" onclick="openTutorial(2)" data-layer="2">
+                <div class="layer-info">
+                    <div class="layer-number">LAYER 2</div>
+                    <div class="layer-name">Data Link Layer</div>
+                    <div class="layer-description">Physical addressing and error detection (MAC addresses)</div>
+                </div>
+                <div class="layer-status">
+                    <div class="checkmark">✓</div>
+                    <span style="font-size: 24px;">🔗</span>
+                </div>
+            </div>
+
+            <!-- Layer 1 - Physical -->
+            <div class="layer-card layer-1" onclick="openTutorial(1)" data-layer="1">
+                <div class="layer-info">
+                    <div class="layer-number">LAYER 1</div>
+                    <div class="layer-name">Physical Layer</div>
+                    <div class="layer-description">Raw bit transmission over physical medium (cables, signals)</div>
+                </div>
+                <div class="layer-status">
+                    <div class="checkmark">✓</div>
+                    <span style="font-size: 24px;">⚡</span>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin: 40px 0;">
+            <a href="learning.html" class="btn btn-secondary">← Back to Learning</a>
+        </div>
+    </div>
+
+    <!-- Tutorial Modal -->
+    <div class="tutorial-modal" id="tutorialModal">
+        <div class="tutorial-content">
+            <button class="close-btn" onclick="closeTutorial()">×</button>
+            <div id="tutorialBody"></div>
+        </div>
+    </div>
+
+    <script src="../js/main.js"></script>
+    <script>
+        checkLogin();
+
+        // Tutorial data for each layer
+        const tutorials = {
+            7: {
+                number: 7,
+                name: "Application Layer",
+                color: "#e74c3c",
+                icon: "📱",
+                intro: "The Application Layer is the topmost layer of the OSI model and the closest to the end user. It provides network services directly to user applications.",
+                analogy: "Think of this as the apps on your phone. When you open your web browser, email client, or any app that uses the internet, you're working at the Application Layer. It's what you see and interact with.",
+                keyPoints: [
+                    "Provides network services to applications",
+                    "Where users interact with the network",
+                    "Handles high-level protocols and data representation",
+                    "Examples: HTTP, FTP, SMTP, DNS, DHCP",
+                    "Does NOT include the actual applications (like Chrome or Outlook)"
+                ],
+                examples: "When you type 'www.google.com' in your browser, the Application Layer uses DNS to translate that name into an IP address. When you send an email, SMTP (Simple Mail Transfer Protocol) at the Application Layer handles it.",
+                protocols: "HTTP/HTTPS (Web), FTP (File Transfer), SMTP (Email), DNS (Name Resolution), DHCP (IP Assignment), Telnet, SSH",
+                problems: "If Application Layer protocols fail, you might see errors like 'DNS server not responding' or 'Connection timed out' in your browser."
+            },
+            6: {
+                number: 6,
+                name: "Presentation Layer",
+                color: "#e67e22",
+                icon: "🔐",
+                intro: "The Presentation Layer acts as a translator, ensuring data is in a format that the Application Layer can understand. It handles encryption, compression, and data formatting.",
+                analogy: "Think of this as a translator at the UN. If one person speaks English and another speaks Spanish, the translator converts the message so both understand. The Presentation Layer does the same for data.",
+                keyPoints: [
+                    "Translates data between application and network formats",
+                    "Handles data encryption and decryption (SSL/TLS)",
+                    "Compresses data to reduce transmission size",
+                    "Converts data formats (ASCII, EBCDIC, JPEG, MP3)",
+                    "Ensures data is readable by the receiving system"
+                ],
+                examples: "When you visit a website with HTTPS, the Presentation Layer encrypts your data using SSL/TLS. When you watch a video, this layer handles decompression of the MP4 or other video formats.",
+                protocols: "SSL/TLS (Encryption), JPEG, GIF, PNG (Image formats), MPEG (Video), ASCII, EBCDIC (Character encoding)",
+                problems: "Encryption errors, corrupted files, or 'unable to decrypt' messages indicate Presentation Layer issues."
+            },
+            5: {
+                number: 5,
+                name: "Session Layer",
+                color: "#f39c12",
+                icon: "🔗",
+                intro: "The Session Layer manages connections (sessions) between applications. It establishes, maintains, and terminates communication sessions.",
+                analogy: "Imagine calling a customer service hotline. The Session Layer is like the operator who connects your call, keeps it active while you talk, and properly hangs up when you're done. It manages the entire conversation.",
+                keyPoints: [
+                    "Establishes, manages, and terminates sessions",
+                    "Controls dialog between two devices (who talks when)",
+                    "Provides synchronization with checkpoints",
+                    "Handles session restoration if connection is lost",
+                    "Manages multiple connections for applications"
+                ],
+                examples: "When you log into a website, the Session Layer maintains your login session so you don't have to re-enter credentials on every page. If your video call drops, this layer helps re-establish the connection.",
+                protocols: "NetBIOS, RPC (Remote Procedure Call), PPTP (for VPNs), NFS (Network File System)",
+                problems: "Session timeouts, 'session expired' errors, or connection drops indicate Session Layer problems."
+            },
+            4: {
+                number: 4,
+                name: "Transport Layer",
+                color: "#2ecc71",
+                icon: "🚚",
+                intro: "The Transport Layer ensures complete data transfer and provides reliable or fast delivery depending on the protocol used (TCP or UDP).",
+                analogy: "Think of this as a shipping company. TCP is like certified mail with tracking and confirmation - it's slower but guarantees delivery. UDP is like dropping a postcard in the mailbox - it's fast but no guarantee it arrives.",
+                keyPoints: [
+                    "Ensures reliable end-to-end data delivery",
+                    "Segments data into smaller chunks",
+                    "Uses port numbers to identify applications (HTTP=80, HTTPS=443)",
+                    "TCP: Reliable, ordered, error-checked (slow but sure)",
+                    "UDP: Fast, no error-checking (fast but no guarantees)"
+                ],
+                examples: "When you download a file, TCP ensures every piece arrives correctly and in order. When you stream a live video, UDP prioritizes speed over perfection - a few dropped frames won't matter.",
+                protocols: "TCP (Transmission Control Protocol), UDP (User Datagram Protocol), Port numbers (0-65535)",
+                problems: "Slow downloads, corrupted files, or connection resets indicate Transport Layer issues."
+            },
+            3: {
+                number: 3,
+                name: "Network Layer",
+                color: "#3498db",
+                icon: "🗺️",
+                intro: "The Network Layer handles routing of data packets across networks using IP addresses. It determines the best path from source to destination.",
+                analogy: "Think of this as Google Maps for data. It figures out the best route to get your data from your house to a server in another country, passing through multiple routers along the way.",
+                keyPoints: [
+                    "Handles logical addressing (IP addresses)",
+                    "Routes packets across different networks",
+                    "Determines best path using routing protocols",
+                    "Fragments and reassembles packets if needed",
+                    "Works with routers"
+                ],
+                examples: "When you send a message to someone across the world, the Network Layer uses IP addresses and routers to find the best path. Your data might travel through 10+ routers before reaching its destination.",
+                protocols: "IP (IPv4, IPv6), ICMP (Ping), ARP (Address Resolution), OSPF, BGP (Routing protocols)",
+                problems: "'Destination unreachable', routing loops, or incorrect IP configuration indicate Network Layer problems."
+            },
+            2: {
+                number: 2,
+                name: "Data Link Layer",
+                color: "#9b59b6",
+                icon: "🔗",
+                intro: "The Data Link Layer handles communication between devices on the same local network using MAC addresses. It also detects and corrects errors from the Physical Layer.",
+                analogy: "Think of this as your local post office. It makes sure mail gets to the right house on your street using house numbers (MAC addresses), and checks that letters aren't damaged.",
+                keyPoints: [
+                    "Uses MAC addresses for local network communication",
+                    "Divides data into frames",
+                    "Provides error detection (CRC checks)",
+                    "Controls access to the physical medium",
+                    "Works with switches and network interface cards (NICs)"
+                ],
+                examples: "When your laptop connects to WiFi and talks to your router, the Data Link Layer uses MAC addresses. Switches use this layer to forward data to the correct device on your local network.",
+                protocols: "Ethernet, WiFi (802.11), PPP, MAC addresses, ARP",
+                problems: "Duplicate MAC addresses, switch failures, or 'frame errors' indicate Data Link Layer issues."
+            },
+            1: {
+                number: 1,
+                name: "Physical Layer",
+                color: "#95a5a6",
+                icon: "⚡",
+                intro: "The Physical Layer is the foundation of the OSI model. It deals with the actual physical transmission of raw bits over cables, radio waves, or fiber optics.",
+                analogy: "Think of this as the actual roads, highways, and bridges that mail trucks drive on. It's the physical infrastructure - the cables, WiFi signals, and electrical pulses that carry data.",
+                keyPoints: [
+                    "Transmits raw bits (0s and 1s)",
+                    "Defines physical characteristics (cables, connectors, voltages)",
+                    "Handles signal transmission (electrical, light, radio)",
+                    "Sets data transmission rates (speed)",
+                    "Works with hubs, repeaters, cables, network adapters"
+                ],
+                examples: "When you plug an Ethernet cable into your computer, the Physical Layer handles sending electrical signals through the copper wires. When you use WiFi, it transmits data as radio waves.",
+                protocols: "Ethernet cables (Cat5, Cat6), Fiber optic cables, WiFi radio frequencies, USB, Bluetooth, RS-232",
+                problems: "Loose cables, damaged connectors, electromagnetic interference, or 'no signal' errors indicate Physical Layer problems."
+            }
+        };
+
+        // Track completed tutorials
+        let completedLayers = new Set();
+
+        // Load completed layers from backend
+        function loadProgress() {
+            fetch('../php/get_tutorial_progress.php')
+                .then(r => r.json())
+                .then(data => {
+                    if (data.success && data.completed) {
+                        completedLayers = new Set(data.completed);
+                        updateUI();
+                    }
+                })
+                .catch(err => console.error('Error loading progress:', err));
+        }
+
+        // Open tutorial
+        function openTutorial(layer) {
+            const tutorial = tutorials[layer];
+            const html = `
+                <div class="tutorial-header" style="border-left-color: ${tutorial.color};">
+                    <div style="font-size: 14px; font-weight: bold; color: #666;">LAYER ${tutorial.number}</div>
+                    <div class="tutorial-title" style="color: ${tutorial.color};">
+                        ${tutorial.icon} ${tutorial.name}
+                    </div>
+                    <div class="tutorial-subtitle">${tutorial.intro}</div>
+                </div>
+
+                <div class="analogy-box">
+                    <div class="analogy-title">💡 Real-World Analogy</div>
+                    <p style="margin: 0; line-height: 1.6;">${tutorial.analogy}</p>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">🎯 Key Concepts</div>
+                    <div class="key-points">
+                        <ul>
+                            ${tutorial.keyPoints.map(point => `<li>${point}</li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">📋 Examples</div>
+                    <div class="examples">
+                        <p style="margin: 0; line-height: 1.6;">${tutorial.examples}</p>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">🔧 Protocols & Technologies</div>
+                    <div class="section-content">
+                        ${tutorial.protocols}
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">⚠️ Common Problems</div>
+                    <div class="section-content">
+                        ${tutorial.problems}
+                    </div>
+                </div>
+
+                <button class="complete-btn ${completedLayers.has(layer) ? 'completed' : ''}" 
+                        onclick="markComplete(${layer})"
+                        ${completedLayers.has(layer) ? 'disabled' : ''}>
+                    ${completedLayers.has(layer) ? '✓ Completed' : 'Mark as Complete'}
+                </button>
+            `;
+
+            document.getElementById('tutorialBody').innerHTML = html;
+            document.getElementById('tutorialModal').classList.add('active');
+        }
+
+        // Close tutorial
+        function closeTutorial() {
+            document.getElementById('tutorialModal').classList.remove('active');
+        }
+
+        // Mark tutorial as complete
+        function markComplete(layer) {
+            fetch('../php/mark_tutorial_complete.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ layer: layer })
+            })
+            .then(r => r.json())
+            .then(data => {
+                if (data.success) {
+                    completedLayers.add(layer);
+                    updateUI();
+                    closeTutorial();
+                    alert('✅ Great job! Tutorial completed!');
+                } else {
+                    alert('Error saving progress');
+                }
+            })
+            .catch(err => console.error('Error:', err));
+        }
+
+        // Update UI with completion status
+        function updateUI() {
+            // Update layer cards
+            document.querySelectorAll('.layer-card').forEach(card => {
+                const layer = parseInt(card.getAttribute('data-layer'));
+                if (completedLayers.has(layer)) {
+                    card.classList.add('completed');
+                }
+            });
+
+            // Update progress bar
+            const total = 7;
+            const completed = completedLayers.size;
+            const percentage = (completed / total) * 100;
+            const progressBar = document.getElementById('progressBar');
+            progressBar.style.width = percentage + '%';
+            progressBar.textContent = `${completed}/${total}`;
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('tutorialModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeTutorial();
+            }
+        });
+
+        // Logout function
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                window.location.href = '../php/logout.php';
+            }
+        }
+
+        // Load progress on page load
+        loadProgress();
+    </script>
+</body>
+</html>

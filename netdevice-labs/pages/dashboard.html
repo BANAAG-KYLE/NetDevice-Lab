@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - NetDevice Lab</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header>
+        <div class="header-content">
+            <a href="../index.html" class="logo">🌐 NetDevice Lab</a>
+            <nav>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="learning.html">Learning</a>
+                <a href="quiz.html">Quiz</a>
+                <span id="userDisplay" style="color: #667eea; font-weight: bold;">Loading...</span>
+                <button class="logout-btn" onclick="logout()">Logout</button>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Welcome Header -->
+        <div class="dashboard-header">
+            <h1 class="dashboard-title">Welcome back, <span id="userName">User</span>! 👋</h1>
+            <p class="dashboard-subtitle">Ready to continue your networking journey?</p>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value" id="totalQuizzes">0</div>
+                <div class="stat-label">Quizzes Completed</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="avgScore">0%</div>
+                <div class="stat-label">Average Score</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="tutorialsCompleted">0/7</div>
+                <div class="stat-label">Tutorials Completed</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="studyTime">0</div>
+                <div class="stat-label">Study Hours</div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <h2 style="color: #333; margin-bottom: 20px;">Quick Actions</h2>
+        <div class="row">
+            <div class="card">
+                <div class="card-title">📚 Start Learning</div>
+                <div class="card-text">
+                    Explore protocol animations, OSI tutorials, and network device encyclopedia.
+                </div>
+                <a href="learning.html" class="btn btn-primary" style="margin-top: 15px; width: 100%;">Go to Learning Module</a>
+            </div>
+
+            <div class="card">
+                <div class="card-title">🎨 Build Network</div>
+                <div class="card-text">
+                    Design network topologies with our interactive topology designer.
+                </div>
+                <a href="topology.html" class="btn btn-primary" style="margin-top: 15px; width: 100%;">Open Topology Designer</a>
+            </div>
+
+            <div class="card">
+                <div class="card-title">❓ Take Quiz</div>
+                <div class="card-text">
+                    Test your knowledge with quizzes on networking topics.
+                </div>
+                <a href="quiz.html" class="btn btn-primary" style="margin-top: 15px; width: 100%;">Start Quiz</a>
+            </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <h2 style="color: #333; margin: 30px 0 20px 0;">Recent Activity</h2>
+        <div class="card">
+            <div id="recentActivity">
+                <p style="color: #999; text-align: center; padding: 20px;">
+                    No recent activity yet. Start learning to see your progress here!
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Check if user is logged in
+        checkLogin();
+
+        /**
+         * Check if user has active session
+         */
+        function checkLogin() {
+            fetch('../php/check_session.php')
+                .then(response => response.json())
+                .then(data => {
+                    if (!data.loggedIn) {
+                        // Not logged in - redirect to login
+                        window.location.href = '../login.html';
+                    } else {
+                        // Logged in - show user info
+                        document.getElementById('userName').textContent = data.username;
+                        document.getElementById('userDisplay').textContent = data.username;
+                        
+                        // Load user statistics
+                        loadUserStats(data.userId);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    window.location.href = '../login.html';
+                });
+        }
+
+        /**
+         * Load user statistics from database
+         */
+        function loadUserStats(userId) {
+            fetch('../php/get_stats.php?user_id=' + userId)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        document.getElementById('totalQuizzes').textContent = data.stats.total_quizzes || 0;
+                        document.getElementById('avgScore').textContent = (data.stats.avg_score || 0) + '%';
+                        document.getElementById('tutorialsCompleted').textContent = (data.stats.tutorials_completed || 0) + '/7';
+                        document.getElementById('studyTime').textContent = Math.round((data.stats.total_study_time || 0) / 60);
+                        
+                        // Load recent activity
+                        if (data.recent_activity && data.recent_activity.length > 0) {
+                            displayRecentActivity(data.recent_activity);
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading stats:', error);
+                });
+        }
+
+        /**
+         * Display recent activity
+         */
+        function displayRecentActivity(activities) {
+            const activityDiv = document.getElementById('recentActivity');
+            let html = '';
+            
+            activities.forEach(activity => {
+                html += `
+                    <div style="padding: 10px; border-bottom: 1px solid #eee;">
+                        <strong>${activity.type}:</strong> ${activity.description}
+                        <br>
+                        <small style="color: #999;">${activity.date}</small>
+                    </div>
+                `;
+            });
+            
+            activityDiv.innerHTML = html;
+        }
+
+        /**
+         * Logout function
+         */
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                window.location.href = '../php/logout.php';
+            }
+        }
+    </script>
+</body>
+</html>

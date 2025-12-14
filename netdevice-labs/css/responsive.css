@@ -1,0 +1,891 @@
+/* ===== MOBILE RESPONSIVE STYLES ===== */
+/* Add this to your style.css or create a new responsive.css file */
+
+/* ===== BASE RESPONSIVE ADJUSTMENTS ===== */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    /* HEADER & NAVIGATION */
+    header {
+        padding: 10px 0;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .header-content {
+        flex-direction: row;
+        align-items: center;
+        padding: 0 15px;
+        gap: 10px;
+    }
+
+    .logo {
+        font-size: 18px;
+        flex-shrink: 0;
+    }
+
+    nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: flex-end;
+        flex: 1;
+    }
+
+    nav a, nav button {
+        font-size: 11px;
+        padding: 5px 8px;
+        white-space: nowrap;
+    }
+
+    nav span#userDisplay {
+        display: none; /* Hide username on mobile to save space */
+    }
+
+    .logout-btn {
+        padding: 5px 10px;
+        font-size: 11px;
+    }
+
+    /* CONTAINER */
+    .container {
+        padding: 15px;
+        margin-top: 10px;
+    }
+
+    /* FORMS */
+    .form-container {
+        padding: 25px 20px;
+        margin: 20px 10px;
+        border-radius: 8px;
+    }
+
+    .form-title {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+    .form-subtitle {
+        font-size: 13px;
+        margin-bottom: 15px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    select,
+    textarea {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .btn {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+
+    /* DASHBOARD */
+    .dashboard-header {
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+    .dashboard-title {
+        font-size: 24px;
+        margin-bottom: 8px;
+    }
+
+    .dashboard-subtitle {
+        font-size: 14px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .stat-card {
+        padding: 20px;
+    }
+
+    .stat-value {
+        font-size: 32px;
+    }
+
+    .stat-label {
+        font-size: 13px;
+    }
+
+    /* CARDS */
+    .card {
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+
+    .card-title {
+        font-size: 18px;
+    }
+
+    .card-text {
+        font-size: 13px;
+    }
+
+    .row {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    /* BUTTONS */
+    .hero-btn {
+        padding: 12px 25px;
+        font-size: 14px;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* ===== HOMEPAGE RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .hero {
+        min-height: 90vh;
+        padding: 100px 20px 60px;
+    }
+
+    .hero-content {
+        padding: 20px 15px;
+    }
+
+    .hero-icon {
+        font-size: 60px;
+        margin-bottom: 15px;
+    }
+
+    .hero-title {
+        font-size: 28px;
+        margin-bottom: 15px;
+    }
+
+    .hero-subtitle {
+        font-size: 16px;
+        margin-bottom: 25px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+    }
+
+    .hero-btn {
+        width: 100%;
+        max-width: 100%;
+        padding: 14px 25px;
+    }
+
+    .scroll-indicator {
+        bottom: 15px;
+        font-size: 12px;
+    }
+
+    .features-section {
+        padding: 60px 15px;
+    }
+
+    .section-title {
+        font-size: 26px;
+    }
+
+    .section-subtitle {
+        font-size: 15px;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .feature-card {
+        padding: 30px 20px;
+    }
+
+    .feature-icon {
+        font-size: 50px;
+    }
+
+    .feature-title {
+        font-size: 20px;
+    }
+
+    .stats-section {
+        padding: 50px 15px;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .stat-number {
+        font-size: 36px;
+    }
+
+    .cta-section {
+        padding: 60px 15px;
+    }
+
+    .cta-title {
+        font-size: 26px;
+    }
+
+    .cta-description {
+        font-size: 15px;
+    }
+
+    footer {
+        padding: 30px 15px;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+/* ===== PROTOCOLS PAGE RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .animation-section {
+        padding: 20px 15px;
+        margin-bottom: 30px;
+    }
+
+    .animation-title {
+        font-size: 20px;
+    }
+
+    .animation-description {
+        font-size: 13px;
+    }
+
+    .animation-canvas {
+        padding: 20px 15px;
+        min-height: 250px;
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .device-box {
+        min-width: 100px;
+        padding: 20px 15px;
+    }
+
+    .device-icon {
+        font-size: 36px;
+    }
+
+    .device-label {
+        font-size: 12px;
+    }
+
+    .packet {
+        font-size: 11px;
+        padding: 8px 12px;
+    }
+
+    .animation-info {
+        padding: 12px 15px;
+        font-size: 13px;
+        min-height: auto;
+    }
+
+    .animation-controls {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .control-button {
+        padding: 10px 18px;
+        font-size: 13px;
+        flex: 1 1 45%;
+    }
+
+    .key-concepts {
+        padding: 15px;
+    }
+
+    .key-concepts h3 {
+        font-size: 16px;
+    }
+
+    .key-concepts li {
+        font-size: 13px;
+    }
+}
+
+/* ===== QUIZ PAGE RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .quiz-container {
+        padding: 10px;
+    }
+
+    .setup-screen {
+        padding: 20px 15px;
+    }
+
+    .setup-title {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+    .selection-label {
+        font-size: 16px;
+    }
+
+    .option-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .option-card {
+        padding: 15px;
+    }
+
+    .option-icon {
+        font-size: 32px;
+    }
+
+    .option-name {
+        font-size: 14px;
+    }
+
+    .option-desc {
+        font-size: 11px;
+    }
+
+    .start-quiz-btn {
+        padding: 14px;
+        font-size: 16px;
+    }
+
+    .quiz-header {
+        padding: 12px 15px;
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+
+    .question-counter,
+    .quiz-timer {
+        font-size: 14px;
+    }
+
+    .question-card {
+        padding: 20px 15px;
+    }
+
+    .question-text {
+        font-size: 17px;
+        margin-bottom: 20px;
+    }
+
+    .answer-btn {
+        padding: 15px;
+        font-size: 14px;
+        gap: 12px;
+    }
+
+    .answer-letter {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+    }
+
+    .explanation-box {
+        padding: 15px;
+        font-size: 13px;
+    }
+
+    .results-card {
+        padding: 30px 20px;
+    }
+
+    .results-icon {
+        font-size: 60px;
+    }
+
+    .results-title {
+        font-size: 24px;
+    }
+
+    .score-display {
+        font-size: 48px;
+    }
+
+    .score-breakdown {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .stat-box {
+        padding: 15px;
+    }
+
+    .stat-value {
+        font-size: 28px;
+    }
+
+    .performance-message {
+        font-size: 15px;
+        padding: 15px;
+    }
+
+    .results-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .action-btn {
+        padding: 12px;
+        font-size: 14px;
+    }
+}
+
+/* ===== TOPOLOGY DESIGNER RESPONSIVE ===== */
+@media (max-width: 1024px) {
+    .topology-container {
+        grid-template-columns: 1fr;
+        height: auto;
+        min-height: calc(100vh - 80px);
+    }
+
+    .toolbar {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        padding: 15px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        max-height: none;
+        overflow-y: visible;
+    }
+
+    .toolbar-section {
+        margin-bottom: 0;
+    }
+
+    .toolbar-title {
+        font-size: 12px;
+        margin-bottom: 8px;
+    }
+
+    .tool-btn {
+        padding: 10px;
+        font-size: 11px;
+        gap: 5px;
+    }
+
+    .canvas-wrapper {
+        min-height: 400px;
+    }
+
+    canvas {
+        min-height: 400px;
+        max-height: 500px;
+    }
+
+    .properties {
+        padding: 15px;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    }
+
+    .properties-title {
+        font-size: 14px;
+    }
+
+    .prop-label {
+        font-size: 11px;
+    }
+
+    .prop-input,
+    .prop-value {
+        padding: 8px;
+        font-size: 12px;
+    }
+
+    .stats-box {
+        padding: 12px;
+        margin-top: 15px;
+    }
+
+    .stat-value {
+        font-size: 20px;
+    }
+
+    .stat-label {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .toolbar {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 12px;
+    }
+
+    .canvas-header {
+        padding: 12px 15px;
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+
+    .canvas-title {
+        font-size: 14px;
+    }
+
+    .zoom-controls {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .zoom-btn {
+        padding: 8px 16px;
+    }
+
+    canvas {
+        min-height: 300px;
+    }
+
+    .canvas-footer {
+        font-size: 11px;
+        padding: 10px 15px;
+    }
+
+    .modal-content {
+        width: 95%;
+        padding: 20px;
+        margin: 20px;
+    }
+
+    .modal-title {
+        font-size: 18px;
+    }
+}
+
+/* ===== TUTORIALS PAGE RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .tutorial-container {
+        padding: 15px 10px;
+    }
+
+    .osi-model {
+        gap: 12px;
+    }
+
+    .layer-card {
+        padding: 15px;
+        flex-direction: column;
+        align-items: flex-start;
+        border-left-width: 4px;
+    }
+
+    .layer-card:hover {
+        transform: translateX(5px);
+    }
+
+    .layer-number {
+        font-size: 12px;
+    }
+
+    .layer-name {
+        font-size: 18px;
+    }
+
+    .layer-description {
+        font-size: 12px;
+    }
+
+    .layer-status {
+        margin-top: 10px;
+        align-self: flex-end;
+    }
+
+    .checkmark {
+        width: 25px;
+        height: 25px;
+        font-size: 14px;
+    }
+
+    .progress-summary {
+        padding: 20px 15px;
+        margin-bottom: 20px;
+    }
+
+    .progress-summary h3 {
+        font-size: 16px;
+    }
+
+    .progress-bar-container {
+        height: 25px;
+        margin: 15px 0;
+    }
+
+    .progress-bar-fill {
+        font-size: 12px;
+    }
+
+    /* Tutorial Modal */
+    .tutorial-modal {
+        padding: 10px;
+    }
+
+    .tutorial-content {
+        padding: 25px 20px;
+        margin: 20px 0;
+    }
+
+    .close-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 20px;
+        top: 15px;
+        right: 15px;
+    }
+
+    .tutorial-title {
+        font-size: 24px;
+    }
+
+    .tutorial-subtitle {
+        font-size: 14px;
+    }
+
+    .section {
+        margin: 20px 0;
+    }
+
+    .section-title {
+        font-size: 20px;
+        margin-bottom: 12px;
+    }
+
+    .section-content {
+        font-size: 14px;
+    }
+
+    .analogy-box {
+        padding: 15px;
+    }
+
+    .analogy-title {
+        font-size: 16px;
+    }
+
+    .analogy-box p {
+        font-size: 14px;
+    }
+
+    .key-points {
+        padding: 15px;
+    }
+
+    .key-points li {
+        font-size: 13px;
+        padding: 8px 0 8px 25px;
+    }
+
+    .examples {
+        padding: 15px;
+    }
+
+    .examples p {
+        font-size: 14px;
+    }
+
+    .complete-btn {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+}
+
+/* ===== LEARNING PAGE RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .row {
+        grid-template-columns: 1fr;
+    }
+
+    .card div[style*="font-size: 48px"] {
+        font-size: 36px !important;
+    }
+}
+
+/* ===== VERY SMALL SCREENS (320px - 480px) ===== */
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 24px;
+    }
+
+    .hero-subtitle {
+        font-size: 14px;
+    }
+
+    .section-title {
+        font-size: 22px;
+    }
+
+    .feature-icon {
+        font-size: 40px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-number {
+        font-size: 28px;
+    }
+
+    nav {
+        gap: 5px;
+    }
+
+    nav a, nav button {
+        font-size: 10px;
+        padding: 4px 6px;
+    }
+
+    .logout-btn {
+        padding: 4px 8px;
+    }
+}
+
+/* ===== LANDSCAPE MODE MOBILE ===== */
+@media (max-width: 896px) and (orientation: landscape) {
+    .hero {
+        min-height: auto;
+        padding: 80px 20px 40px;
+    }
+
+    .hero-content {
+        max-width: 700px;
+    }
+
+    .hero-icon {
+        font-size: 50px;
+        margin-bottom: 10px;
+    }
+
+    .hero-title {
+        font-size: 32px;
+        margin-bottom: 12px;
+    }
+
+    .hero-subtitle {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    .hero-buttons {
+        flex-direction: row;
+    }
+
+    .scroll-indicator {
+        display: none;
+    }
+}
+
+/* ===== UTILITY CLASSES FOR MOBILE ===== */
+.hide-mobile {
+    display: block;
+}
+
+.show-mobile {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .hide-mobile {
+        display: none !important;
+    }
+
+    .show-mobile {
+        display: block !important;
+    }
+}
+
+/* ===== TOUCH-FRIENDLY IMPROVEMENTS ===== */
+@media (max-width: 768px) {
+    /* Increase touch target sizes */
+    button, a, input, select {
+        min-height: 44px; /* iOS recommendation for touch targets */
+    }
+
+    /* Prevent text selection on buttons */
+    button {
+        -webkit-tap-highlight-color: transparent;
+        user-select: none;
+    }
+
+    /* Smooth scrolling */
+    html {
+        scroll-behavior: smooth;
+    }
+
+    /* Better spacing for touch interactions */
+    .tool-btn,
+    .control-button,
+    .answer-btn {
+        margin-bottom: 10px;
+    }
+}
+
+/* ===== OVERFLOW FIXES ===== */
+@media (max-width: 768px) {
+    body {
+        overflow-x: hidden;
+    }
+
+    .container {
+        overflow-x: hidden;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+/* ===== ANIMATION ADJUSTMENTS FOR MOBILE ===== */
+@media (max-width: 768px) {
+    /* Reduce animation complexity on mobile */
+    @keyframes moveRight {
+        0% { left: 10%; opacity: 0; }
+        10% { opacity: 1; }
+        90% { opacity: 1; }
+        100% { left: 60%; opacity: 0; }
+    }
+
+    @keyframes moveLeft {
+        0% { right: 10%; opacity: 0; }
+        10% { opacity: 1; }
+        90% { opacity: 1; }
+        100% { right: 60%; opacity: 0; }
+    }
+
+    /* Disable complex animations on low-end devices */
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+}
