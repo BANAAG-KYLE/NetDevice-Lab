@@ -2,1041 +2,419 @@
 
 <div align="center">
 
-![Course](https://img.shields.io/badge/course-IT--314-orange.svg)
+![NetDevice Lab Logo](https://img.shields.io/badge/🌐-NetDevice%20Lab-8B6FD6?style=for-the-badge&labelColor=574392)
 
-**A Fully Integrated Web-Based Learning Platform for Computer Networking**
+### *Master Networking Through Interactive Learning*
 
-[📖 Documentation](#documentation) • [🎯 Features](#features) • [🏗️ Architecture](#architecture)
+[![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://www.php.net/)
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](https://www.mysql.com/)
+[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://html.spec.whatwg.org/)
+[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://www.w3.org/Style/CSS/)
 
----
+**🎓 Batangas State University | 💻 IT-314 Web Systems Project**
 
-### 📚 **Course Information**
-
-**IT-314: System Integration and Architecture**  
-**Batangas State University - The National Engineering University**  
-**College of Informatics and Computing Sciences**  
-**1st Semester, AY 2025-2026**
+[✨ Features](#-features) • [🚀 Installation](#-installation-guide) • [📖 Documentation](#-usage-guide) • [👥 Team](#-meet-the-team)
 
 ---
 
 </div>
 
-## 👥 Project Team
+## 🎯 What is NetDevice Lab?
+
+NetDevice Lab transforms the traditionally complex world of computer networking into an engaging, visual, and interactive experience. Say goodbye to dense textbooks and hello to:
+
+- 🎬 **Animated Protocol Demonstrations** - Watch data packets travel in real-time
+- 🎨 **Visual Topology Design** - Build networks like playing with digital LEGO
+- 📚 **Gamified Learning** - Progress through levels, earn badges, conquer quizzes
+- 🖥️ **Device Encyclopedia** - Your networking hardware Wikipedia
+
+<div align="center">
+
+</div>
+
+---
+
+## ✨ Features That Make Learning Fun
 
 <table>
-<tr>
-<td align="center" width="16.66%">
-<img src="https://via.placeholder.com/100" width="100" height="100" style="border-radius: 50%"><br>
-<b>Kyle Banaag</b><br>
-<sub>Project Leader<br>System Architect</sub>
-</td>
-<td align="center" width="16.66%">
-<img src="https://via.placeholder.com/100" width="100" height="100" style="border-radius: 50%"><br>
-<b>Bjorn Phillipe Lara</b><br>
-<sub>Database Admin<br>Backend Integration</sub>
-</td>
-<td align="center" width="16.66%">
-<img src="https://via.placeholder.com/100" width="100" height="100" style="border-radius: 50%"><br>
-<b>Paolo Dolor</b><br>
-<sub>Frontend Developer<br>UI Integration</sub>
-</td>
-<td align="center" width="16.66%">
-<img src="https://via.placeholder.com/100" width="100" height="100" style="border-radius: 50%"><br>
-<b>Von Ian Chris Lozano</b><br>
-<sub>API Integration<br>Module Coordinator</sub>
-</td>
-<td align="center" width="16.66%">
-<img src="https://via.placeholder.com/100" width="100" height="100" style="border-radius: 50%"><br>
-<b>Ronel Angelo Sales</b><br>
-<sub>Documentation<br>Testing Lead</sub>
-</td>
-<td align="center" width="16.66%">
-<img src="https://via.placeholder.com/100" width="100" height="100" style="border-radius: 50%"><br>
-<b>[Member 6 Name]</b><br>
-<sub>Integration Specialist<br>Quality Assurance</sub>
-</td>
-</tr>
+  <tr>
+    <td width="50%" valign="top">
+      
+### 🔐 **Smart Authentication**
+```
+✓ Secure login with bcrypt encryption
+✓ "Remember Me" for convenience
+✓ Session persistence
+✓ Progress auto-save
+```
+
+### 🎬 **Protocol Animations**
+Watch networking magic happen:
+- **TCP Handshake** - See the famous SYN, SYN-ACK, ACK dance
+- **DNS Resolution** - From google.com to 142.250.185.46
+- **DHCP Process** - The DORA adventure (Discover, Offer, Request, Acknowledge)
+- **ICMP Ping** - Echo requests bouncing across networks
+
+    </td>
+    <td width="50%" valign="top">
+
+### 📊 **Personal Dashboard**
+Your networking command center:
+```
+📈 Quiz Performance Analytics
+⏱️ Study Time Tracking
+📝 Recent Activity Feed
+🎯 Learning Recommendations
+```
+
+### 🎨 **Network Topology Designer**
+Build like Cisco Packet Tracer:
+- Drag & drop devices
+- Connect with virtual cables
+- Set IP addresses
+- Check connectivity
+- Save/Load designs
+- Export as image
+
+    </td>
+  </tr>
 </table>
 
 ---
 
-## 📋 Table of Contents
-
-- [🎯 Project Overview](#-project-overview)
-- [🏗️ System Architecture](#️-system-architecture)
-- [🔄 System Integration](#-system-integration)
-- [✨ Key Features](#-key-features)
-- [💾 Database Schema](#-database-schema)
-- [🔌 API Endpoints](#-api-endpoints)
-- [🎨 Frontend Technologies](#-frontend-technologies)
-- [⚙️ Backend Technologies](#️-backend-technologies)
-- [📊 Integration Flow](#-integration-flow)
-- [🚀 Installation & Setup](#-installation--setup)
-- [📸 Screenshots](#-screenshots)
-- [🧪 Testing](#-testing)
-- [📈 Future Enhancements](#-future-enhancements)
-
----
-
-## 🎯 Project Overview
-
-### **Problem Statement**
-
-Many students struggle with understanding computer networking concepts because:
-- 📚 Textbooks are boring and difficult to comprehend
-- 🔄 Complex protocols are hard to visualize
-- 💰 Expensive software (Cisco Packet Tracer) creates barriers
-- 📊 Lack of progress tracking and feedback
-
-### **Our Solution**
-
-**NetDevice Lab** is a comprehensive, fully-integrated web-based platform that makes learning networking:
-- 🎬 **Visual** - Interactive protocol animations
-- 🎨 **Hands-on** - Network topology designer
-- 📈 **Progressive** - Automated progress tracking
-- 🆓 **Accessible** - Completely free for students
-
-### **Project Objectives**
-
-```
-✅ Demonstrate three-tier architecture integration
-✅ Implement secure user authentication system
-✅ Create real-time data synchronization
-✅ Build interactive learning modules
-✅ Develop RESTful API communication
-✅ Deploy modular, scalable system design
-```
-
----
-
-## 🏗️ System Architecture
-
-### **Three-Tier Architecture**
-
-```
-┌─────────────────────────────────────────────────────────┐
-│                   PRESENTATION LAYER                     │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌─────────┐ │
-│  │   HTML   │  │   CSS    │  │JavaScript│  │ Canvas  │ │
-│  │  Pages   │  │  Styles  │  │  Logic   │  │   API   │ │
-│  └──────────┘  └──────────┘  └──────────┘  └─────────┘ │
-└─────────────────────────────────────────────────────────┘
-                            ⬇️ HTTP/AJAX
-┌─────────────────────────────────────────────────────────┐
-│                   APPLICATION LAYER                      │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌─────────┐ │
-│  │   PHP    │  │ Session  │  │   JSON   │  │  REST   │ │
-│  │ Backend  │  │Management│  │Processing│  │   API   │ │
-│  └──────────┘  └──────────┘  └──────────┘  └─────────┘ │
-└─────────────────────────────────────────────────────────┘
-                            ⬇️ MySQLi
-┌─────────────────────────────────────────────────────────┐
-│                      DATA LAYER                          │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌─────────┐ │
-│  │  MySQL   │  │  Users   │  │  Quizzes │  │Progress │ │
-│  │Database  │  │  Table   │  │  Results │  │Tracking │ │
-│  └──────────┘  └──────────┘  └──────────┘  └─────────┘ │
-└─────────────────────────────────────────────────────────┘
-```
-
-### **Technology Stack**
+## 📚 Complete Learning Path
 
 <div align="center">
 
-| Layer | Technologies |
-|-------|-------------|
-| 🎨 **Frontend** | HTML5, CSS3, JavaScript (ES6+), Canvas API |
-| ⚙️ **Backend** | PHP 8.2, Session Management, JSON |
-| 💾 **Database** | MySQL (MariaDB 10.4.32) |
-| 🌐 **Server** | Apache 2.4 (XAMPP) |
-| 🔧 **Tools** | Git, VS Code, phpMyAdmin |
+```mermaid
+graph LR
+    A[🏠 Register] --> B[📖 OSI Tutorials]
+    B --> C[🎬 Watch Animations]
+    C --> D[🎨 Build Networks]
+    D --> E[❓ Take Quizzes]
+    E --> F[🏆 Master Networking!]
+    
+    style A fill:#667eea,color:#fff
+    style B fill:#764ba2,color:#fff
+    style C fill:#667eea,color:#fff
+    style D fill:#764ba2,color:#fff
+    style E fill:#667eea,color:#fff
+    style F fill:#28a745,color:#fff
+```
 
 </div>
 
----
+### 🗺️ **OSI Model Journey** - All 7 Layers Explained
 
-## 🔄 System Integration
+| Layer | Name | What You'll Learn | Icon |
+|-------|------|-------------------|------|
+| 7️⃣ | Application | HTTP, DNS, FTP magic | 📱 |
+| 6️⃣ | Presentation | Encryption & data formatting | 🔐 |
+| 5️⃣ | Session | Connection management | 🔗 |
+| 4️⃣ | Transport | TCP vs UDP showdown | 🚚 |
+| 3️⃣ | Network | IP addressing & routing | 🗺️ |
+| 2️⃣ | Data Link | MAC addresses & switches | 🔗 |
+| 1️⃣ | Physical | Cables, signals, bits | ⚡ |
 
-### **Integration Points Demonstrated**
+### 🎮 **Quiz System** - Test Your Skills
 
-#### **1️⃣ Frontend-Backend Integration**
-```javascript
-// JavaScript Fetch API → PHP Backend
-fetch('php/login.php', {
-    method: 'POST',
-    body: formData
-})
-.then(response => response.json())
-.then(data => {
-    // Handle integrated response
-});
-```
+<table>
+  <tr>
+    <td align="center"><b>😊 Easy</b><br/>Perfect for beginners</td>
+    <td align="center"><b>🤔 Medium</b><br/>Challenge yourself</td>
+    <td align="center"><b>🔥 Hard</b><br/>Expert level</td>
+  </tr>
+</table>
 
-#### **2️⃣ Backend-Database Integration**
-```php
-// PHP MySQLi → MySQL Database
-$sql = "SELECT * FROM users WHERE username = ?";
-$stmt = $link->prepare($sql);
-$stmt->bind_param('s', $username);
-$stmt->execute();
-```
-
-#### **3️⃣ Session Integration**
-```php
-// Cross-page state management
-session_start();
-$_SESSION['user_id'] = $user['user_id'];
-$_SESSION['username'] = $user['username'];
-```
-
-#### **4️⃣ Real-time Data Synchronization**
-```javascript
-// Asynchronous data updates
-setInterval(() => {
-    fetch('php/get_stats.php')
-        .then(r => r.json())
-        .then(data => updateUI(data));
-}, 5000);
-```
-
-### **Integration Architecture Diagram**
-
-```
-┌──────────┐                    ┌──────────┐
-│  Client  │ ◄─── HTTP/AJAX ──► │   PHP    │
-│JavaScript│                    │ Backend  │
-└──────────┘                    └──────────┘
-     │                                │
-     │ DOM Manipulation          MySQLi Connection
-     │                                │
-     ▼                                ▼
-┌──────────┐                    ┌──────────┐
-│   HTML   │                    │  MySQL   │
-│   DOM    │                    │ Database │
-└──────────┘                    └──────────┘
-
-     Integration Flow:
-     User Action → JS Event → Fetch API → PHP Processing
-     → Database Query → JSON Response → UI Update
-```
+**Categories:**
+- 🏗️ OSI Model (7 layers of knowledge)
+- 🖥️ Network Devices (Routers, switches, oh my!)
+- 🔗 Protocols (TCP, DNS, DHCP, and friends)
+- 🌐 IP Addressing (Subnetting made simple)
+- 🔧 Troubleshooting (Become a network detective)
 
 ---
 
-## ✨ Key Features
+## 🚀 Installation Guide
 
-### **1. User Authentication System** 🔐
+<div align="center">
 
-**Integration Demonstrated:**
-- Frontend form validation (JavaScript)
-- Backend credential verification (PHP)
-- Database user lookup (MySQL)
-- Session management (PHP Sessions)
-- Secure password hashing (bcrypt)
+</div>
 
-**Technical Implementation:**
-```
-Login Flow:
-HTML Form → JavaScript Validation → Fetch API 
-→ login.php → MySQLi Query → Session Creation 
-→ JSON Response → Redirect to Dashboard
-```
-
----
-
-### **2. Interactive Dashboard** 📊
-
-**Integration Demonstrated:**
-- Multi-table database joins
-- Real-time statistics calculation
-- Asynchronous data loading
-- Dynamic DOM updates
-
-**Features:**
-- ✅ Total Quizzes Completed
-- ✅ Average Score Calculation
-- ✅ Tutorial Progress Tracking
-- ✅ Study Time Monitoring
-- ✅ Recent Activity Feed
-
----
-
-### **3. Protocol Animations** 🎬
-
-**Animations Available:**
-- TCP Three-Way Handshake
-- DNS Resolution Process
-- DHCP IP Assignment (DORA)
-- ICMP Ping/Echo Request
-
-**Integration Demonstrated:**
-- CSS keyframe animations
-- JavaScript timing control
-- DOM manipulation
-- Event-driven architecture
-
----
-
-### **4. OSI Model Tutorials** 📚
-
-**7 Layers Covered:**
-1. Layer 7 - Application Layer
-2. Layer 6 - Presentation Layer
-3. Layer 5 - Session Layer
-4. Layer 4 - Transport Layer
-5. Layer 3 - Network Layer
-6. Layer 2 - Data Link Layer
-7. Layer 1 - Physical Layer
-
-**Integration Demonstrated:**
-- Modal component integration
-- Progress tracking (PHP + MySQL)
-- State management
-- Data persistence
-
----
-
-### **5. Interactive Quiz System** ❓
-
-**Quiz Features:**
-- 3 difficulty levels (Easy, Medium, Hard)
-- 5 categories (OSI, Devices, Protocols, IP, Troubleshooting)
-- Randomized questions from database
-- Real-time feedback
-- Automatic scoring
-- Progress saving
-
-**Integration Demonstrated:**
-```
-Quiz Integration Flow:
-┌─────────────────────────────────────────────────┐
-│ 1. User selects difficulty & category (Frontend)│
-├─────────────────────────────────────────────────┤
-│ 2. AJAX request → get_quiz_questions.php       │
-├─────────────────────────────────────────────────┤
-│ 3. PHP queries database (SELECT RAND())        │
-├─────────────────────────────────────────────────┤
-│ 4. Database returns 10 random questions        │
-├─────────────────────────────────────────────────┤
-│ 5. PHP formats as JSON array                   │
-├─────────────────────────────────────────────────┤
-│ 6. Frontend renders questions dynamically      │
-├─────────────────────────────────────────────────┤
-│ 7. User answers → JavaScript validation        │
-├─────────────────────────────────────────────────┤
-│ 8. POST results → save_quiz_result.php         │
-├─────────────────────────────────────────────────┤
-│ 9. PHP updates quiz_results & user_statistics  │
-├─────────────────────────────────────────────────┤
-│ 10. Dashboard statistics update automatically  │
-└─────────────────────────────────────────────────┘
-```
-
----
-
-### **6. Network Topology Designer** 🎨
-
-**Features:**
-- Drag-and-drop interface
-- Device types: PC, Router, Server
-- Cable connections
-- IP address assignment
-- Save/Load functionality
-- Connectivity checking
-
-**Integration Demonstrated:**
-- HTML5 Canvas API
-- Object-oriented JavaScript
-- JSON data serialization
-- Database BLOB storage
-- Real-time canvas rendering
-
----
-
-### **7. Device Encyclopedia** 🖥️
-
-**Devices Covered:**
-- Routers, Switches, Hubs
-- Firewalls, Access Points
-- Modems, NICs
-- Load Balancers, Proxy Servers
-- Repeaters
-
-**Integration Features:**
-- Search functionality
-- Category filtering
-- Modal detail views
-- Responsive design
-
----
-
-## 💾 Database Schema
-
-### **Entity Relationship Diagram**
-
-```
-┌─────────────┐         ┌──────────────────┐         ┌────────────────┐
-│    USERS    │────1:*──│  QUIZ_RESULTS    │         │ QUIZ_QUESTIONS │
-│             │         │                  │         │                │
-│ PK user_id  │         │ PK result_id     │         │ PK question_id │
-│  username   │         │ FK user_id       │         │  category      │
-│  email      │         │  difficulty      │         │  difficulty    │
-│  password   │         │  category        │         │  question_text │
-│  created_at │         │  score           │         │  option_a      │
-└─────────────┘         │  percentage      │         │  option_b      │
-       │                │  time_taken      │         │  option_c      │
-       │                └──────────────────┘         │  option_d      │
-       │                                             │  correct_answer│
-       │                ┌──────────────────┐         │  explanation   │
-       ├───────1:*──────│ USER_PROGRESS    │         └────────────────┘
-       │                │                  │
-       │                │ PK progress_id   │         ┌────────────────┐
-       │                │ FK user_id       │         │USER_STATISTICS │
-       │                │  tutorial_id     │         │                │
-       │                │  completed_date  │         │ PK stat_id     │
-       │                └──────────────────┘         │ FK user_id     │
-       │                                             │  total_quizzes │
-       │                ┌──────────────────┐         │  avg_score     │
-       └───────1:*──────│NETWORK_TOPOLOGIES│         │  total_study   │
-                        │                  │         └────────────────┘
-                        │ PK topology_id   │
-                        │ FK user_id       │
-                        │  topology_name   │
-                        │  device_data     │
-                        │  connection_data │
-                        │  created_at      │
-                        └──────────────────┘
-```
-
-### **Table Specifications**
-
-| Table | Records | Purpose | Integration Point |
-|-------|---------|---------|-------------------|
-| **users** | User accounts | Authentication | Session management |
-| **user_statistics** | Performance metrics | Dashboard display | Real-time calculations |
-| **user_progress** | Tutorial completion | Progress tracking | Achievement system |
-| **quiz_questions** | 26 questions | Quiz content | Random selection |
-| **quiz_results** | Quiz history | Performance analysis | Statistical aggregation |
-| **network_topologies** | Saved designs | Topology persistence | JSON serialization |
-
----
-
-## 🔌 API Endpoints
-
-### **Authentication Endpoints**
-
-```php
-POST /php/register.php
-Request:  { username, email, password }
-Response: { success: true, message: "Registration successful" }
-
-POST /php/login.php
-Request:  { username, password, rememberMe }
-Response: { success: true, user_id, username }
-
-GET /php/check_session.php
-Response: { loggedIn: true, userId, username, email }
-
-GET /php/logout.php
-Action:   Destroys session, redirects to index.html
-```
-
-### **Learning Module Endpoints**
-
-```php
-GET /php/get_stats.php?user_id={id}
-Response: {
-    success: true,
-    stats: {
-        total_quizzes: 10,
-        avg_score: 85.5,
-        total_study_time: 3600,
-        tutorials_completed: 5
-    },
-    recent_activity: [...]
-}
-
-GET /php/get_tutorial_progress.php
-Response: {
-    success: true,
-    completed: [1, 2, 3, 7]
-}
-
-POST /php/mark_tutorial_complete.php
-Request:  { layer: 7 }
-Response: { success: true, message: "Tutorial completed" }
-```
-
-### **Quiz System Endpoints**
-
-```php
-GET /php/get_quiz_questions.php?difficulty={level}&category={cat}
-Response: {
-    success: true,
-    questions: [
-        {
-            question_id: 1,
-            question_text: "...",
-            options: ["A", "B", "C", "D"],
-            correct_answer: 2,
-            explanation: "..."
-        }
-    ]
-}
-
-POST /php/save_quiz_result.php
-Request: {
-    difficulty: "easy",
-    category: "osi",
-    score: 8,
-    total_questions: 10,
-    percentage: 80,
-    time_taken: 120,
-    answers: [...]
-}
-Response: { success: true, message: "Result saved" }
-```
-
-### **Topology Designer Endpoints**
-
-```php
-POST /php/save_topology.php
-Request: {
-    name: "My Network",
-    devices: [{id, type, x, y, name, ip}],
-    connections: [{id, from, to, label}]
-}
-Response: { success: true, topology_id: 5 }
-
-GET /php/get_topologies.php
-Response: {
-    success: true,
-    topologies: [
-        {topology_id, topology_name, created_at}
-    ]
-}
-
-GET /php/load_topology.php?id={id}
-Response: {
-    success: true,
-    devices: [...],
-    connections: [...]
-}
-```
-
----
-
-## 🎨 Frontend Technologies
-
-### **HTML5 Structure**
-
-```
-/pages/
-├── dashboard.html      - User dashboard
-├── learning.html       - Learning modules hub
-├── protocols.html      - Protocol animations
-├── tutorials.html      - OSI layer tutorials
-├── quiz.html          - Interactive quiz system
-├── topology.html      - Network designer
-└── devices.html       - Device encyclopedia
-```
-
-### **CSS3 Styling**
-
-```
-/css/
-├── style.css          - Base styles & components
-├── animations.css     - Protocol animations
-└── responsive.css     - Mobile responsiveness
-```
-
-**Design Features:**
-- 🎨 Modern gradient backgrounds
-- 🌙 Smooth transitions and animations
-- 📱 Fully responsive (mobile, tablet, desktop)
-- ♿ Accessible color contrasts
-- 🎯 Consistent UI components
-
-### **JavaScript Modules**
-
-```
-/js/
-├── main.js                    - Core functions
-├── topology-designer.js       - Canvas drawing logic
-├── quiz.js                    - Quiz functionality
-└── progress.js                - Progress tracking
-```
-
-**JavaScript Features:**
-- ✅ ES6+ syntax (arrow functions, async/await)
-- ✅ Fetch API for AJAX requests
-- ✅ DOM manipulation
-- ✅ Event-driven architecture
-- ✅ Object-oriented programming
-- ✅ Canvas API for graphics
-
----
-
-## ⚙️ Backend Technologies
-
-### **PHP Architecture**
-
-```
-/php/
-├── config.php                    - Database connection
-├── register.php                  - User registration
-├── login.php                     - Authentication
-├── logout.php                    - Session destruction
-├── check_session.php             - Session validation
-├── get_stats.php                 - Dashboard statistics
-├── get_quiz_questions.php        - Quiz data retrieval
-├── save_quiz_result.php          - Quiz result storage
-├── get_tutorial_progress.php     - Progress retrieval
-├── mark_tutorial_complete.php    - Progress update
-├── save_topology.php             - Topology save
-├── load_topology.php             - Topology load
-└── get_topologies.php            - Topology list
-```
-
-### **Security Implementations**
-
-```php
-✅ Password Hashing (bcrypt)
-password_hash($password, PASSWORD_BCRYPT);
-
-✅ SQL Injection Prevention (Prepared Statements)
-$stmt = $link->prepare("SELECT * FROM users WHERE username = ?");
-$stmt->bind_param('s', $username);
-
-✅ XSS Prevention (Input Sanitization)
-$username = trim($_POST['username']);
-$username = htmlspecialchars($username);
-
-✅ Session Security
-session_start();
-session_regenerate_id(true);
-
-✅ CSRF Protection
-// Token validation on sensitive operations
-```
-
----
-
-## 📊 Integration Flow Examples
-
-### **Example 1: User Login Integration**
-
-```
-┌──────────────────────────────────────────────────────────────┐
-│                     USER LOGIN FLOW                          │
-└──────────────────────────────────────────────────────────────┘
-
-1. USER ACTION (Frontend)
-   └─> User enters username & password
-   └─> Clicks "Login" button
-
-2. JAVASCRIPT VALIDATION (Frontend)
-   └─> event.preventDefault() - Stop form submission
-   └─> Validate input fields
-   └─> Prepare FormData object
-
-3. FETCH API CALL (Frontend → Backend)
-   └─> POST request to php/login.php
-   └─> Send credentials securely
-
-4. PHP RECEIVES DATA (Backend)
-   └─> Retrieve $_POST['username'] and $_POST['password']
-   └─> Sanitize input data
-
-5. DATABASE QUERY (Backend → Database)
-   └─> Prepare SQL statement with parameters
-   └─> Execute: SELECT * FROM users WHERE username = ?
-   └─> Fetch user record
-
-6. PASSWORD VERIFICATION (Backend)
-   └─> Use password_verify() to check hash
-   └─> Compare stored hash with input
-
-7. SESSION CREATION (Backend)
-   └─> session_start()
-   └─> $_SESSION['user_id'] = $user['user_id']
-   └─> $_SESSION['username'] = $user['username']
-
-8. JSON RESPONSE (Backend → Frontend)
-   └─> Return: { success: true, user_id: 5, username: "John" }
-
-9. JAVASCRIPT HANDLING (Frontend)
-   └─> Parse JSON response
-   └─> Check if success === true
-   └─> Store user info if needed
-
-10. PAGE REDIRECT (Frontend)
-    └─> window.location.href = 'pages/dashboard.html'
-    └─> User successfully logged in
-
-⏱️ Total Process Time: ~200-500ms
-```
-
-### **Example 2: Quiz Taking Integration**
-
-```
-┌──────────────────────────────────────────────────────────────┐
-│                   QUIZ SYSTEM INTEGRATION                    │
-└──────────────────────────────────────────────────────────────┘
-
-PHASE 1: QUIZ INITIALIZATION
-├─> User selects difficulty & category (Frontend)
-├─> JavaScript validates selections
-├─> GET request: get_quiz_questions.php?difficulty=easy&category=osi
-├─> PHP queries database: SELECT * FROM quiz_questions WHERE...
-├─> MySQL returns 10 random questions (ORDER BY RAND() LIMIT 10)
-├─> PHP formats as JSON array with all question data
-├─> JavaScript receives questions and stores in memory
-└─> First question rendered dynamically in DOM
-
-PHASE 2: ANSWERING QUESTIONS
-├─> User clicks answer button
-├─> JavaScript highlights selected answer
-├─> JavaScript checks if correct (client-side immediate feedback)
-├─> Correct answer shown in green, wrong in red
-├─> Explanation displayed below question
-├─> Answer stored in array: userAnswers.push({...})
-├─> "Next Question" button appears
-└─> Repeat for all 10 questions
-
-PHASE 3: QUIZ COMPLETION
-├─> User finishes last question
-├─> JavaScript calculates: score, percentage, time_taken
-├─> Prepare comprehensive result object
-├─> POST request: save_quiz_result.php
-│   └─> Body: {
-│         difficulty, category, score, total_questions,
-│         percentage, time_taken, answers[]
-│      }
-├─> PHP receives quiz result data
-├─> BEGIN TRANSACTION (for data integrity)
-│   ├─> INSERT INTO quiz_results (user_id, score, percentage...)
-│   ├─> UPDATE user_statistics SET total_quizzes = total_quizzes + 1
-│   └─> RECALCULATE avg_score = AVG(percentage) FROM quiz_results
-├─> COMMIT TRANSACTION
-├─> PHP returns: { success: true }
-├─> JavaScript displays results screen
-└─> User sees final score, breakdown, performance message
-
-PHASE 4: DASHBOARD UPDATE (Real-time Integration)
-├─> User navigates to dashboard
-├─> Dashboard loads: check_session.php (verify user)
-├─> Dashboard loads: get_stats.php (get updated statistics)
-├─> PHP queries user_statistics table
-├─> Returns: { total_quizzes: 11, avg_score: 83.2, ... }
-├─> JavaScript updates DOM elements dynamically
-└─> Statistics reflect latest quiz results
-
-🔄 INTEGRATION POINTS:
-- Frontend ↔ Backend: Fetch API (JSON)
-- Backend ↔ Database: MySQLi (Prepared Statements)
-- State Management: JavaScript variables + PHP Sessions
-- Data Format: JSON for all API responses
-```
-
----
-
-## 🚀 Installation & Setup
-
-### **Prerequisites**
+### 📋 Prerequisites Checklist
 
 ```bash
-✅ XAMPP 8.2 or higher
-✅ PHP 8.2+
-✅ MySQL (MariaDB) 10.4+
-✅ Modern web browser (Chrome, Firefox, Edge)
-✅ Text editor (VS Code recommended)
+☐ XAMPP (Apache + MySQL + PHP 7.4+)
+☐ Web Browser (Chrome/Firefox/Edge)
+☐ VS Code (optional but recommended)
 ```
 
-### **Step-by-Step Installation**
+---
 
-#### **1. Clone the Repository**
+### 🎬 Step-by-Step Installation
+
+<details>
+<summary><b>🔽 Step 1: Install XAMPP</b></summary>
+
+1. Download XAMPP from [apachefriends.org](https://www.apachefriends.org/)
+2. Run the installer
+3. Default path is perfect: `C:\xampp\`
+4. Install all components
+
+**✅ Success:** You'll see the XAMPP Control Panel
+
+</details>
+
+<details>
+<summary><b>🔽 Step 2: Get the Project</b></summary>
+
+**Option A: Git Clone (Recommended)**
 ```bash
-git clone https://github.com/your-username/netdevice-lab.git
-cd netdevice-lab
+cd C:\xampp\htdocs
+git clone <your-repo-url> netdevice-lab
 ```
 
-#### **2. Start XAMPP Services**
+**Option B: Manual Download**
 ```bash
-# Start Apache and MySQL
-- Open XAMPP Control Panel
-- Click "Start" on Apache
-- Click "Start" on MySQL
+1. Download ZIP from GitHub
+2. Extract to: C:\xampp\htdocs\netdevice-lab
+3. Ensure folder structure is correct
 ```
 
-#### **3. Create Database**
-```sql
--- Open phpMyAdmin (http://localhost/phpmyadmin)
--- Create new database
+**✅ Success:** You should see all project files in `htdocs/netdevice-lab/`
 
-CREATE DATABASE netdevice_db;
+</details>
 
--- Import the provided SQL file
--- File: /database/netdevice_db.sql
-```
+<details open>
+<summary><b>🔽 Step 3: Database Setup (IMPORTANT!)</b></summary>
 
-#### **4. Configure Database Connection**
+1. **Start XAMPP:**
+   ```
+   Open XAMPP Control Panel
+   Click "Start" for Apache ✓
+   Click "Start" for MySQL ✓
+   ```
+
+2. **Create Database:**
+   ```
+   → Open browser
+   → Go to: http://localhost/phpmyadmin
+   → Click "New" in sidebar
+   → Database name: netdevice_db
+   → Collation: utf8mb4_general_ci
+   → Click "Create" 🎉
+   ```
+
+3. **Import Data:**
+   ```
+   → Click on "netdevice_db" database
+   → Click "Import" tab
+   → Choose file: netdevice_db (1).sql
+   → Scroll down, click "Go"
+   → Wait for success message ✓
+   ```
+
+**✅ Success Message:** "Import has been successfully finished"
+
+</details>
+
+<details>
+<summary><b>🔽 Step 4: Verify Configuration</b></summary>
+
+Open `php/config.php` and verify:
+
 ```php
-// File: php/config.php
-define('DB_SERVER', 'localhost');
-define('DB_USERNAME', 'root');
-define('DB_PASSWORD', '');  // Leave empty for XAMPP default
-define('DB_NAME', 'netdevice_db');
+<?php
+define('DB_SERVER', 'localhost');   // ✓ Default XAMPP
+define('DB_USERNAME', 'root');      // ✓ Default XAMPP
+define('DB_PASSWORD', '');          // ✓ Empty for XAMPP
+define('DB_NAME', 'netdevice_db');  // ✓ Your database name
+?>
 ```
 
-#### **5. Move Project to XAMPP Directory**
-```bash
-# Copy project folder to:
-C:/xampp/htdocs/netdevice-lab/
+**⚠️ Note:** Only change these if you configured XAMPP differently!
 
-# Or create symlink (Windows CMD as Admin):
-mklink /D C:\xampp\htdocs\netdevice-lab C:\path\to\your\project
-```
+</details>
 
-#### **6. Access the Application**
-```
-🌐 Open browser and navigate to:
-http://localhost/netdevice-lab/
+<details>
+<summary><b>🔽 Step 5: Launch the Application</b></summary>
 
-📝 Register a new account or use test account:
-Username: testuser
-Password: test123
-```
+1. **Ensure services are running:**
+   ```
+   XAMPP Control Panel:
+   ✅ Apache - Running (green)
+   ✅ MySQL - Running (green)
+   ```
 
-### **Project Structure**
+2. **Open in browser:**
+   ```
+   http://localhost/netdevice-lab/
+   ```
+
+3. **You should see:**
+   - Beautiful homepage with animated globe 🌐
+   - "Get Started Free" button
+   - Feature showcase
+
+**✅ Success:** Welcome to NetDevice Lab!
+
+</details>
+
+<details>
+<summary><b>🔽 Step 6: Create Your First Account</b></summary>
+
+1. Click **"Get Started Free"** or **"Register"**
+2. Fill in the form:
+   ```
+   Full Name: Your Name
+   Username: coolnetworker (letters, numbers, _ only)
+   Email: you@example.com
+   Password: ******* (min 6 characters)
+   ```
+3. Check "I agree to Terms and Conditions"
+4. Click **"Register"**
+5. Login with your new credentials
+6. Start learning! 🎓
+
+</details>
+
+---
+
+### 🎨 Development Setup (For Developers)
+
+<details>
+<summary><b>Setting up VS Code (Optional)</b></summary>
+
+1. **Install VS Code** from [code.visualstudio.com](https://code.visualstudio.com/)
+
+2. **Recommended Extensions:**
+   ```
+   - PHP Intelephense
+   - MySQL (by Jun Han)
+   - Live Server
+   - Prettier - Code formatter
+   - JavaScript (ES6) code snippets
+   ```
+
+3. **Open Project:**
+   ```bash
+   File → Open Folder → C:\xampp\htdocs\netdevice-lab
+   ```
+
+4. **Configure Live Server:**
+   - Settings → Search "Live Server"
+   - Set root: `/htdocs/netdevice-lab`
+   - Port: 5500
+
+</details>
+
+---
+
+## 📁 Project Architecture
 
 ```
 netdevice-lab/
 │
-├── index.html              # Landing page
-├── login.html             # Login page
-├── register.html          # Registration page
+├── 🎨 css/
+│   ├── style.css           ← Global styles & layouts
+│   ├── animations.css      ← Protocol animation magic
+│   └── responsive.css      ← Mobile-first responsive design
 │
-├── pages/                 # Application pages
-│   ├── dashboard.html
-│   ├── learning.html
-│   ├── protocols.html
-│   ├── tutorials.html
-│   ├── quiz.html
-│   ├── topology.html
-│   └── devices.html
+├── ⚡ js/
+│   ├── main.js             ← Core functions & utilities
+│   └── topology-designer.js ← Canvas-based network builder
 │
-├── css/                   # Stylesheets
-│   ├── style.css
-│   ├── animations.css
-│   └── responsive.css
+├── 🔧 php/
+│   ├── config.php          ← Database connection (⚠️ Important!)
+│   ├── register.php        ← User registration handler
+│   ├── login.php           ← Authentication logic
+│   ├── check_session.php   ← Session validator
+│   ├── get_stats.php       ← Dashboard statistics
+│   ├── get_quiz_questions.php ← Quiz question loader
+│   ├── save_quiz_result.php   ← Score saver
+│   ├── save_topology.php   ← Network design saver
+│   ├── load_topology.php   ← Network design loader
+│   ├── get_tutorial_progress.php ← Tutorial tracker
+│   └── mark_tutorial_complete.php ← Tutorial completer
 │
-├── js/                    # JavaScript files
-│   ├── main.js
-│   ├── topology-designer.js
-│   ├── quiz.js
-│   └── progress.js
+├── 📄 pages/
+│   ├── dashboard.html      ← User command center
+│   ├── learning.html       ← Learning hub
+│   ├── protocols.html      ← Animated protocols
+│   ├── tutorials.html      ← OSI layer lessons
+│   ├── devices.html        ← Device encyclopedia
+│   ├── topology.html       ← Network designer
+│   └── quiz.html           ← Quiz system
 │
-├── php/                   # Backend PHP files
-│   ├── config.php
-│   ├── register.php
-│   ├── login.php
-│   ├── logout.php
-│   ├── check_session.php
-│   ├── get_stats.php
-│   ├── get_quiz_questions.php
-│   ├── save_quiz_result.php
-│   ├── get_tutorial_progress.php
-│   ├── mark_tutorial_complete.php
-│   ├── save_topology.php
-│   ├── load_topology.php
-│   └── get_topologies.php
+├── 🏠 Root Files
+│   ├── index.html          ← Landing page (Start here!)
+│   ├── login.html          ← Login page
+│   ├── register.html       ← Registration page
+│   └── netdevice_db (1).sql ← Database schema (Import this!)
 │
-├── database/              # Database files
-│   └── netdevice_db.sql
-│
-├── images/                # Image assets
-│
-├── docs/                  # Documentation
-│   └── architecture.md
-│
-└── README.md              # This file
+└── 📚 Documentation
+    └── README.md           ← You are here!
 ```
 
 ---
 
-## 📸 Screenshots
-
-### **Landing Page**
-<div align="center">
-<img src="screenshots/landing-page.png" alt="Landing Page" width="800">
-
-*Modern gradient hero section with animated globe background*
-</div>
-
-### **Dashboard**
-<div align="center">
-<img src="screenshots/dashboard.png" alt="Dashboard" width="800">
-
-*Real-time statistics and progress tracking*
-</div>
-
-### **Protocol Animations**
-<div align="center">
-<img src="screenshots/tcp-animation.png" alt="TCP Animation" width="800">
-
-*Interactive TCP Three-Way Handshake visualization*
-</div>
-
-### **Quiz System**
-<div align="center">
-<img src="screenshots/quiz.png" alt="Quiz" width="800">
-
-*Interactive quiz with instant feedback*
-</div>
-
-### **Topology Designer**
-<div align="center">
-<img src="screenshots/topology.png" alt="Topology Designer" width="800">
-
-*Drag-and-drop network design tool*
-</div>
-
----
-
-## 🧪 Testing
-
-### **Test Scenarios Completed**
-
-#### **Authentication Testing**
-```
-✅ User registration with valid data
-✅ Duplicate username/email prevention
-✅ Password strength validation
-✅ Login with correct credentials
-✅ Login with incorrect credentials
-✅ Session persistence across pages
-✅ Logout functionality
-✅ Password hashing verification
-```
-
-#### **Quiz System Testing**
-```
-✅ Question randomization
-✅ Multiple difficulty levels
-✅ Category filtering
-✅ Answer validation
-✅ Score calculation
-✅ Time tracking
-✅ Result storage
-✅ Statistics update
-```
-
-#### **Topology Designer Testing**
-```
-✅ Device placement
-✅ Cable connections
-✅ IP address validation
-✅ Save functionality
-✅ Load functionality
-✅ Connectivity check
-✅ Canvas zoom
-✅ Undo/Redo operations
-```
-
-#### **Integration Testing**
-```
-✅ Frontend-Backend communication
-✅ Database transactions
-✅ Session management
-✅ Real-time data updates
-✅ Error handling
-✅ Cross-browser compatibility
-✅ Mobile responsiveness
-```
-
-### **Performance Metrics**
-
-| Metric | Result | Status |
-|--------|--------|--------|
-| Average Page Load | < 2 seconds | ✅ Pass |
-| API Response Time | < 500ms | ✅ Pass |
-| Database Query Time | < 100ms | ✅ Pass |
-| Login Process | < 1 second | ✅ Pass |
-| Quiz Load Time | < 1.5 seconds | ✅ Pass |
-
----
-
-## 📈 Future Enhancements
-
-### **Planned Features**
-
-🔮 **Version 2.0 Roadmap**
-- [ ] Advanced network simulations
-- [ ] Multi-player collaboration mode
-- [ ] AI-powered learning recommendations
-- [ ] Mobile app (React Native)
-- [ ] CCNA certification practice exams
-- [ ] Video tutorials integration
-- [ ] Community forum
-- [ ] Instructor dashboard
-- [ ] Achievement badges system
-- [ ] Leaderboard functionality
-
-### **Technical Improvements**
-- [ ] Migrate to Laravel framework
-- [ ] Implement Redis caching
-- [ ] Add WebSocket for real-time features
-- [ ] API rate limiting
-- [ ] OAuth2 authentication
-- [ ] Progressive Web App (PWA)
-- [ ] Docker containerization
-- [ ] CI/CD pipeline setup
-
----
-
-## 📜 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-## 🙏 Acknowledgments
-
-**Special Thanks To:**
-- 👨‍🏫 **Prof. [Name]** - IT-314 Course Instructor
-- 🏫 **Batangas State University** - The National Engineering University
-- 🎓 **College of Informatics and Computing Sciences**
-- 📚 **All networking resources and documentation**
-
----
-
-## 📞 Contact & Support
+## 👥 Meet the Team
 
 <div align="center">
 
-**Project Repository:** [github.com/your-username/netdevice-lab](https://github.com/your-username/netdevice-lab)
+### 🌟 The Dream Team Behind NetDevice Lab
 
-**Email:** netdevice.lab@gmail.com
-
-**University:** Batangas State University - Alangilan Campus
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://ui-avatars.com/api/?name=Kyle+Banaag&background=667eea&color=fff&size=100&bold=true" width="100px;" alt="Kyle Banaag"/>
+      <br />
+      <sub><b>Kyle M. Banaag</b></sub>
+      <br />
+      <sub>🎨 Frontend Developer</sub>
+    </td>
+    <td align="center">
+      <img src="https://ui-avatars.com/api/?name=Bjorn+Lara&background=764ba2&color=fff&size=100&bold=true" width="100px;" alt="Bjorn Lara"/>
+      <br />
+      <sub><b>Bjorn Phillipe Lara</b></sub>
+      <br />
+      <sub>⚙️ Backend Developer</sub>
+    </td>
+    <td align="center">
+      <img src="https://ui-avatars.com/api/?name=Paolo+Dolor&background=667eea&color=fff&size=100&bold=true" width="100px;" alt="Paolo Dolor"/>
+      <br />
+      <sub><b>Paolo Q. Dolor</b></sub>
+      <br />
+      <sub>🗄️ Database Architect</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://ui-avatars.com/api/?name=Von+Lozano&background=764ba2&color=fff&size=100&bold=true" width="100px;" alt="Von Lozano"/>
+      <br />
+      <sub><b>Von Ian Chris M. Lozano</b></sub>
+      <br />
+      <sub>🎯 UI/UX Designer</sub>
+    </td>
+    <td align="center">
+      <img src="https://ui-avatars.com/api/?name=Ronel+Sales&background=667eea&color=fff&size=100&bold=true" width="100px;" alt="Ronel Sales"/>
+      <br />
+      <sub><b>Ronel Angelo P. Sales</b></sub>
+      <br />
+      <sub>📊 Project Manager</sub>
+    </td>
+    <td align="center">
+      <img src="https://ui-avatars.com/api/?name=BatStateU&background=8B0000&color=fff&size=100&bold=true" width="100px;" alt="BatStateU"/>
+      <br />
+      <sub><b>BatStateU</b></sub>
+      <br />
+      <sub>🏛️ Our University</sub>
+    </td>
+  </tr>
+</table>
 
 ---
 
-### 🌟 If you found this project helpful, please give it a star!
-
-[![GitHub stars](https://img.shields.io/github/stars/your-username/netdevice-lab?style=social)](https://github.com/your-username/netdevice-lab/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/your-username/netdevice-lab?style=social)](https://github.com/your-username/netdevice-lab/network/members)
-
-</div>
-
----
-
-<div align="center">
-
-**Made with ❤️ by IT-NT-3101 Students**
-
-*Leading Innovations, Transforming Lives, Building the Nation*
-
-**© 2025 NetDevice Lab. All Rights Reserved.**
 
 </div>
